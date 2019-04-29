@@ -29,3 +29,4 @@ This grafana plugin is tested with the grafna versions 6.x. But other versions a
 
 * This plugin is in very much WIP / dev stage. Expect breaking changes & bugs.
 * Though this is a workaround to [this](https://github.com/grafana/grafana/issues/10495) grafana bug, this plugin works.
+* You can achieve the similiar effect without this plugin with the use of text panel. LOL.
