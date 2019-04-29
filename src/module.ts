@@ -33,8 +33,6 @@ class BoomThemeCtl extends PanelCtrl {
 }
 BoomThemeCtl.prototype.render = function () {
     let output = ``;
-    this.ctrl.panel.title = `Boom Theme`;
-    this.ctrl.panel.transparent = true;
     if (this.ctrl.panel.externalCSSs && this.ctrl.panel.externalCSSs.length > 0) {
         _.each(this.ctrl.panel.externalCSSs, cssFile => {
             if (cssFile && cssFile.url !== "") {
