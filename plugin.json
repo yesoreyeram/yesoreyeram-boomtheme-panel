@@ -1,0 +1,25 @@
+{
+  "type": "panel",
+  "name": "Boom Theme",
+  "id": "yesoreyeram-boomtheme-panel",
+  "dataFormats": ["table","timeseries"],
+  "info": {
+    "version": "0.0.1",
+    "description": "Template for Boom Panels",
+    "author": {
+      "name": "Sriramajeyam Sugumaran",
+      "url": "https://www.google.com/search?q=Sriramajeyam+Sugumaran"
+    },
+    "keywords": ["grafana", "plugin", "panel"],
+    "links": [
+      {
+        "name": "Github",
+        "url": "https://github.com/yesoreyeram/yesoreyeram-boomtheme-panel"
+      }
+    ]
+  },
+  "dependencies": {
+    "grafanaVersion": "4.x.x",
+    "plugins": []
+  }
+}

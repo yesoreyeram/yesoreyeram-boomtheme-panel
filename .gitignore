@@ -1,0 +1,3 @@
+.tscache/
+*.tmp.txt
+node_modules/
