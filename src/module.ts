@@ -32,19 +32,21 @@ class BoomThemeCtl extends PanelCtrl {
     }
 }
 BoomThemeCtl.prototype.render = function () {
-    let output = ``;
+    let output = '';
     if (this.ctrl.panel.externalCSSs && this.ctrl.panel.externalCSSs.length > 0) {
         _.each(this.ctrl.panel.externalCSSs, cssFile => {
             if (cssFile && cssFile.url !== "") {
-                output += `
-                <style>
-                    @import url(' ${cssFile.url}');
-                </style>
-                `;
+                output += `@import url('${cssFile.url}');
+`;
             }
         });
     }
-    output += `<style>${this.ctrl.panel.custom_css || ""}</style>`;
-    this.elem.find("#boom-theme").html(output);
+    output += this.ctrl.panel.custom_css || '';
+
+    const style = document.createElement('style');
+    style.type = 'text/css';
+    style.appendChild(document.createTextNode(output));
+
+    this.elem.find("#boom-theme").append(style);
 };
 export { BoomThemeCtl as PanelCtrl };
