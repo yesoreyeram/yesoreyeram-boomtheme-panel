@@ -2,7 +2,7 @@
 
 Custom styles / themes to grafana dashboards. You can customize any dashboard using external stylesheets / inline style.
 
-![image](https://user-images.githubusercontent.com/153843/56893470-a77c3400-6a7a-11e9-8c26-efae8d29b69e.png)
+![image](https://user-images.githubusercontent.com/153843/56966948-12e80380-6b58-11e9-8821-77c64beb7f65.png)
 
 ![image](https://user-images.githubusercontent.com/153843/56966143-76713180-6b56-11e9-8979-4eab634b943f.png)
 
