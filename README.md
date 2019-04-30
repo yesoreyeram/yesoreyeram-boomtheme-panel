@@ -12,6 +12,13 @@ Custom styles / themes to grafana dashboards. You can customize any dashboard us
 * Add inline styles to override styles
 * Styles applicable to current dashboard only
 
+# Coming Soon / TO DO
+
+* Multiple Themes support per dashboard
+* Theme Switcher (Between dark, light, custom)
+* Boom Themes / Themes repository
+* Extract color structure from Grafana core style to make quick color pallet based themes.
+
 # Supported Grafana version
 
 This grafana plugin is tested with the grafna versions 6.x. But other versions are also expected to work.
@@ -29,4 +36,4 @@ This grafana plugin is tested with the grafna versions 6.x. But other versions a
 
 * This plugin is in very much WIP / dev stage. Expect breaking changes & bugs.
 * Though this is a workaround to [this](https://github.com/grafana/grafana/issues/10495) grafana bug, this plugin works.
-* You can achieve the similiar effect without this plugin with the use of text panel. LOL.
+* You can achieve core feautres of this plugin without using this plugin, but with the use of text panel and HTML mode.
