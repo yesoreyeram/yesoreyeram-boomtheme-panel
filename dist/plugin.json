@@ -4,7 +4,7 @@
   "id": "yesoreyeram-boomtheme-panel",
   "dataFormats": ["table","timeseries"],
   "info": {
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "Template for Boom Panels",
     "author": {
       "name": "Sriramajeyam Sugumaran",

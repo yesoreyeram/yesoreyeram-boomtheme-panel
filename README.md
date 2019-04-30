@@ -4,18 +4,20 @@ Custom styles / themes to grafana dashboards. You can customize any dashboard us
 
 ![image](https://user-images.githubusercontent.com/153843/56893470-a77c3400-6a7a-11e9-8c26-efae8d29b69e.png)
 
-![image](https://user-images.githubusercontent.com/153843/56890722-2d47b180-6a72-11e9-8de0-078035674c31.png)
+![image](https://user-images.githubusercontent.com/153843/56966143-76713180-6b56-11e9-8979-4eab634b943f.png)
 
 # Features
 
-* Add zero or more than one external style sheets
-* Add inline styles to override styles
-* Styles applicable to current dashboard only
+* Multiple themes per dashboard
+* Add zero or more than one external style sheets to a theme
+* Add inline styles to themes to override styles 
+* Themes applicable to current dashboard only
+* Multiple Themes support per dashboard
+* Users with view only option can also pick their favourite theme
+* Add many themes as possible without rebuilding/restarting grafana
 
 # Coming Soon / TO DO
 
-* Multiple Themes support per dashboard
-* Theme Switcher (Between dark, light, custom)
 * Boom Themes / Themes repository
 * Extract color structure from Grafana core style to make quick color pallet based themes.
 
@@ -23,17 +25,13 @@ Custom styles / themes to grafana dashboards. You can customize any dashboard us
 
 This grafana plugin is tested with the grafna versions 6.x. But other versions are also expected to work.
 
-# Note
+# Notes 
 
 * When adding external stylesheets, make sure CORS enabled for those domains.
 * To make panel invisible : Modify following theme panel settings:  
     * transparent = true 
     * title = ""  
+    * Disable Theme Picker using panel settings
     * Move this panel to the bottom of the dashboard
     * Adjust the height and width if required.
-
-# Disclaimer
-
 * This plugin is in very much WIP / dev stage. Expect breaking changes & bugs.
-* Though this is a workaround to [this](https://github.com/grafana/grafana/issues/10495) grafana bug, this plugin works.
-* You can achieve core feautres of this plugin without using this plugin, but with the use of text panel and HTML mode.

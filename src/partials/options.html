@@ -1,4 +1,86 @@
 <div class="boomtheme-panel">
+    <div class="edit-tab-with-sidemenu">
+        <aside class="edit-sidemenu-aside">
+            <ul class="edit-sidemenu">
+                <li>
+                    <a ng-click="ctrl.activeEditorTabIndex = -1">
+                        <i class="fa fa-gear" style="margin-right: 7px;"></i>                        
+                        <span ng-if="ctrl.activeEditorTabIndex === -1" style="margin-right: 7px;font-weight: bolder;color:orangered;">></span>
+                        Settings
+                    </a>
+                </li>
+                <li ng-repeat="theme in ctrl.panel.themes track by $index" ng-click="ctrl.activeEditorTabIndex = $index">
+                    <a>
+                        <span ng-if="ctrl.panel.activeThemeId === $index">
+                            <i class="fa fa-paint-brush" style="margin-right: 5px; color:green;"></i>
+                            <span ng-if="ctrl.activeEditorTabIndex === $index" style="margin-right: 7px;font-weight: bolder;color:orangered;">></span>
+                            {{ctrl.limitText(theme.name,15)}}
+                        </span>
+                        <span ng-if="ctrl.panel.activeThemeId !== $index">
+                            <i class="fa fa-paint-brush" style="margin-right: 5px;"></i>
+                            <span ng-if="ctrl.activeEditorTabIndex === $index" style="margin-right: 7px;font-weight: bolder;color:orangered;">></span>
+                            {{ctrl.limitText(theme.name,15)}}
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <span ng-click="ctrl.addTheme()" class="btn btn-success"><i class="fa fa-plus"></i>Add new Theme</span>
+                </li>
+            </ul>
+        </aside>
+        <div class="edit-tab-content" ng-if="ctrl.activeEditorTabIndex === -1">
+            <div class="editor-row">
+                <div class="section gf-form-group">
+                    <div class="gr-form-inline">
+                        <div class="gf-form">
+                            <label class="gf-form-label width-16">Disable Theme Picker </label>
+                            <input type="checkbox" class="gf-form-input width-4" ng-model="ctrl.panel.disableThemePicker" ng-blur="ctrl.render()" ng-change="ctrl.render()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="edit-tab-content" ng-repeat="theme in ctrl.panel.themes track by $index" ng-if="ctrl.activeEditorTabIndex === $index">
+            <div class="editor-row">
+                <div class="section gf-form-group">
+                    <div class="gr-form-inline">
+                        <div class="gf-form">
+                            <label class="gf-form-label width-16">Theme Name </label>
+                            <input type="text" class="gf-form-input width-24" ng-model="theme.name">
+                            <span ng-click="ctrl.setThemeAsDefault($index)" class="btn btn-success" ng-if="ctrl.panel.activeThemeId === $index"><i class="fa fa-check-circle"></i> Default theme</span>
+                            <span ng-click="ctrl.clearTheme()" class="btn btn-danger" ng-if="ctrl.panel.activeThemeId === $index"><i class="fa fa-eraser"></i> Clear</span>
+                            <span ng-click="ctrl.setThemeAsDefault($index)" class="btn btn-secondary" ng-if="ctrl.panel.activeThemeId !== $index"><i class="fa fa-question-circle"></i> Apply as default theme</span>
+                        </div>
+                    </div>
+                    <div class="gr-form-inline" ng-if="theme.stylesheets.length === 0">
+                        <div class="gf-form">
+                            <span class="gf-form-input btn btn-primary width-16" ng-click="theme.addStyleSheet();ctrl.render();">Add External stylesheet</span>
+                        </div>
+                    </div>
+                    <div class="gr-form-inline" ng-if="theme.stylesheets.length > 0" ng-repeat="stylesheet in theme.stylesheets track by $index">
+                        <div class="gf-form">
+                            <label class="gf-form-label width-16">CSS {{$index+1}} URL</label>
+                            <input type="text" class="gf-form-input width-24" ng-model="stylesheet.url">
+                        </div>
+                    </div>
+                    <div class="gr-form-inline">
+                        <div class="gf-form">
+                            <label class="gf-form-label width-16">Custom Style / CSS Overrides</label>
+                            <textarea class="gf-form-input width-24" style="width:100%" rows="10" ng-model="theme.custom_css" data-ng-change="ctrl.render();"></textarea>
+                        </div>
+                    </div>
+                    <div class="gr-form-inline" ng-if="$index !== 0">
+                        <div class="gf-form">
+                            <span class="gf-form-input btn btn-warning width-16" ng-click="ctrl.deleteTheme($index);ctrl.render();">Delete Theme</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 
+<div class="boomtheme-panel">
     <div id="boomtheme-editor-options">
         <div class="editor-row">
             <div class="section gf-form-group">
@@ -33,4 +115,5 @@
             </div>
         </div>
     </div>
-</div>
+</div> 
+-->
