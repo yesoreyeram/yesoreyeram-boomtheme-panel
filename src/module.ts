@@ -84,7 +84,7 @@ class BoomThemeCtl extends PanelCtrl {
     constructor($scope, $injector) {
         super($scope, $injector);
         _.defaults(this.panel, {});
-        this.panel.themes = this.panel.themes || [new BoomTheme({ name: "Theme 1" })];
+        this.panel.themes = this.panel.themes || [new BoomTheme({ name: "Default" })];
         this.panel.activeThemeId = this.panel.activeThemeId || 0;
         this.activeEditorTabIndex = this.panel.activeThemeId >= 0 ? this.panel.activeThemeId : -1;
         this.runtimeThemeSet = false;
@@ -156,6 +156,17 @@ class BoomThemeCtl extends PanelCtrl {
     }
 }
 
+let getThemeCSSFile = function (mode: string): string {
+    let filename = '';
+    if (["dark", "light"].indexOf(mode.toLowerCase()) > -1 && window.performance) {
+        let appfiles = window.performance.getEntries().map(e => e.name).filter(e => e.indexOf(".css") > -1).filter(e => e.indexOf("/grafana.app") > -1);
+        if (appfiles && appfiles.length > 0) {
+            filename = appfiles[0].replace(`build/grafana.app`, `build/grafana.${mode.toLowerCase()}`);
+        }
+    }
+    return filename;
+};
+
 BoomThemeCtl.prototype.render = function () {
     let output = '';
     _.each(this.panel.themes, (theme, index) => {
@@ -169,6 +180,15 @@ BoomThemeCtl.prototype.render = function () {
             }
         }
     });
+    if (this.runtimeThemeSet === true) {
+        if (this.runtimeThemeIndex === -2000) {
+            output += `@import url('${getThemeCSSFile("dark")}');
+            `;
+        } else if (this.runtimeThemeIndex === -3000) {
+            output += `@import url('${getThemeCSSFile("light")}');
+            `;
+        }
+    }
 
     const style = document.createElement('style');
     style.type = 'text/css';

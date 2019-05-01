@@ -12,6 +12,7 @@ Custom styles / themes to grafana dashboards. You can customize any dashboard us
 * Add zero or more than one external style sheets to a theme
 * Add inline styles to themes to override styles 
 * Themes applicable to current dashboard only
+* Switch between Dark / Light Themes
 * Users with view only option can also pick their favourite theme
 * Add many themes as possible without rebuilding/restarting grafana
 

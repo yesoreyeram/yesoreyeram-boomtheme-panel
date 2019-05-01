@@ -1,12 +1,18 @@
 <div class="yesoreyeram-boomtheme-panel">
     <div id="boom-theme"></div>
     <div id="boom-theme-switcher" ng-if="ctrl.panel.disableThemePicker === undefined || ctrl.panel.disableThemePicker === false">
-        <div style="text-align:center;">
-            <span style="background:rgb(29, 28, 28);color:white;margin:10px;padding:8px;">
-                    Select Theme : 
-            </span>
-            <span ng-repeat="theme in ctrl.panel.themes track by $index" ng-click="ctrl.setruntimeThemeIndex($index)" style="background:black;color:white;margin:10px;padding:8px;">
-                {{theme.name}}
+        <div style="text-align:center;margin-top:10px;">
+            <span class="btn btn-inverse" style="margin-right:20px;">
+                    Themes
+            </span>            
+            <span ng-repeat="theme in ctrl.panel.themes track by $index" ng-click="ctrl.setruntimeThemeIndex($index)" class="btn btn-inverse" style="margin-right:20px;">
+                    <i class="fa fa-paint-brush" style="margin-right: 5px;"></i>{{theme.name}}
+            </span>            
+            <span ng-click="ctrl.setruntimeThemeIndex(-2000)" class="btn btn-inverse" style="margin-right:20px;">
+                    <i class="fa fa-paint-brush" style="margin-right: 5px;"></i>Dark Theme
+            </span>            
+            <span ng-click="ctrl.setruntimeThemeIndex(-3000)" class="btn btn-inverse" style="margin-right:20px;">
+                    <i class="fa fa-paint-brush" style="margin-right: 5px;"></i>Light Theme
             </span>
         </div>
     </div>
