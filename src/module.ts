@@ -20,6 +20,12 @@ class BoomThemeStyle {
                     url: props && props.url ? props.url : ""
                 };
                 break;
+            case "bgimage":
+                this.type = "bgimage";
+                this.props = {
+                    url: props && props.url ? props.url : ""
+                };
+                break;
             default:
                 this.type = "none";
                 this.props = {};
@@ -40,12 +46,7 @@ class BoomTheme {
         ];
     }
     public addStyle(type: string): void {
-        if (type.toLowerCase() === "style") {
-            this.styles.push(new BoomThemeStyle("style", {}));
-        } else if (type.toLowerCase() === "url") {
-            this.styles.push(new BoomThemeStyle("url", {}));
-        }
-
+        this.styles.push(new BoomThemeStyle(type, {}));
     }
     public deleteStyle(index: number): void {
         this.styles.splice(index, 1);
@@ -61,8 +62,21 @@ class BoomTheme {
                     }
 
                 } else if (style.type === "style") {
-                    if (style.props && style.props.test !== "") {
+                    if (style.props && style.props.text !== "") {
                         output += `${style.props.text || ''}
+                        `;
+                    }
+                } else if (style.type === "bgimage") {
+                    if (style.props && style.props.url !== "") {
+                        output += `
+.main-view, .sidemenu-open .sidemenu, .navbar, .dashboard-container {
+    background: url("${style.props.url}")
+    no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
                         `;
                     }
                 }
@@ -85,7 +99,7 @@ class BoomThemeCtl extends PanelCtrl {
         super($scope, $injector);
         _.defaults(this.panel, {});
         this.panel.transparent = true;
-        this.panel.themes = this.panel.themes || [new BoomTheme({ name: "Default" })];
+        this.panel.themes = this.panel.themes || [new BoomTheme({ name: "Sample" })];
         this.panel.activeThemeId = this.panel.activeThemeId || 0;
         this.activeEditorTabIndex = this.panel.activeThemeId >= 0 ? this.panel.activeThemeId : -1;
         this.runtimeThemeSet = false;
@@ -160,9 +174,9 @@ class BoomThemeCtl extends PanelCtrl {
 let getThemeCSSFile = function (mode: string): string {
     let filename = '';
     if (["dark", "light"].indexOf(mode.toLowerCase()) > -1 && window.performance) {
-        let appfiles = window.performance.getEntries().map(e => e.name).filter(e => e.indexOf(".css") > -1).filter(e => e.indexOf("/grafana.app") > -1);
+        let appfiles = window.performance.getEntries().map(e => e.name).filter(e => e.indexOf(".css") > -1).filter(e => e.indexOf("/public/build/grafana.app") > -1);
         if (appfiles && appfiles.length > 0) {
-            filename = appfiles[0].replace(`build/grafana.app`, `build/grafana.${mode.toLowerCase()}`);
+            filename = appfiles[0].replace(`/public/build/grafana.app`, `/public/build/grafana.${mode.toLowerCase()}`);
         }
     }
     return filename;

@@ -62,12 +62,17 @@
                             <textarea class="gf-form-input width-24" style="width:100%" rows="5" ng-model="style.props.text" data-ng-change="ctrl.render();"></textarea>
                             <span class="btn btn-danger btn-small" ng-click="theme.deleteStyle($index);ctrl.render();"><i class="fa fa-trash"></i></span>
                         </div>
-
+                        <div class="gf-form" ng-if="style.type === 'bgimage'">
+                            <label class="gf-form-label width-16">BG Image URL</label>
+                            <input type="text" class="gf-form-input width-24" ng-model="style.props.url" data-ng-change="ctrl.render();">
+                            <span class="btn btn-danger btn-small" ng-click="theme.deleteStyle($index);ctrl.render();"><i class="fa fa-trash"></i></span>
+                        </div>
                     </div>
                     <div class="gr-form-inline">
                         <div class="gf-form">
                             <span class="gf-form-input btn btn-secondary width-12" ng-click="theme.addStyle('style');ctrl.render();">Add Custom CSS</span>
                             <span class="gf-form-input btn btn-secondary width-12" ng-click="theme.addStyle('url');ctrl.render();">Add external URL</span>
+                            <span class="gf-form-input btn btn-secondary width-12" ng-click="theme.addStyle('bgimage');ctrl.render();">Add BG image</span>
                         </div>
                     </div>
                     <div class="gr-form-inline">
