@@ -1,6 +1,6 @@
 {
   "name": "yesoreyeram-boomtheme-panel",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Template for Boom Panels",
   "main": "dist/module.js",
   "scripts": {

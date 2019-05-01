@@ -4,12 +4,12 @@
             <ul class="edit-sidemenu">
                 <li>
                     <a ng-click="ctrl.activeEditorTabIndex = -1">
-                        <i class="fa fa-gear" style="margin-right: 7px;"></i>                        
+                        <i class="fa fa-gear" style="margin-right: 7px;"></i>
                         <span ng-if="ctrl.activeEditorTabIndex === -1" style="margin-right: 7px;font-weight: bolder;color:orangered;">></span>
                         Settings
                     </a>
                 </li>
-                <li ng-repeat="theme in ctrl.panel.themes track by $index" ng-click="ctrl.activeEditorTabIndex = $index">
+                <li ng-repeat="theme in ctrl.panel.themes track by $index" ng-click="ctrl.activeEditorTabIndex = $index;ctrl.setruntimeThemeIndex($index)">
                     <a>
                         <span ng-if="ctrl.panel.activeThemeId === $index">
                             <i class="fa fa-paint-brush" style="margin-right: 5px; color:green;"></i>
@@ -47,31 +47,32 @@
                         <div class="gf-form">
                             <label class="gf-form-label width-16">Theme Name </label>
                             <input type="text" class="gf-form-input width-24" ng-model="theme.name">
-                            <span ng-click="ctrl.setThemeAsDefault($index)" class="btn btn-success" ng-if="ctrl.panel.activeThemeId === $index"><i class="fa fa-check-circle"></i> Default theme</span>
-                            <span ng-click="ctrl.clearTheme()" class="btn btn-danger" ng-if="ctrl.panel.activeThemeId === $index"><i class="fa fa-eraser"></i> Clear</span>
-                            <span ng-click="ctrl.setThemeAsDefault($index)" class="btn btn-secondary" ng-if="ctrl.panel.activeThemeId !== $index"><i class="fa fa-question-circle"></i> Apply as default theme</span>
+                            <span ng-click="ctrl.setThemeAsDefault($index)" class="btn btn-success" ng-if="ctrl.panel.activeThemeId === $index">Applied as default theme <i class="fa fa-check-circle"></i></span>
+                            <span ng-click="ctrl.setThemeAsDefault($index)" class="btn btn-secondary" ng-if="ctrl.panel.activeThemeId !== $index">Apply as default theme  <i class="fa fa-question-circle"></i></span>
                         </div>
                     </div>
-                    <div class="gr-form-inline" ng-if="theme.stylesheets.length === 0">
-                        <div class="gf-form">
-                            <span class="gf-form-input btn btn-primary width-16" ng-click="theme.addStyleSheet();ctrl.render();">Add External stylesheet</span>
+                    <div class="gr-form-inline" ng-if="theme.styles.length > 0" ng-repeat="style in theme.styles track by $index">
+                        <div class="gf-form" ng-if="style.type === 'url'">
+                            <label class="gf-form-label width-16">CSS URL</label>
+                            <input type="text" class="gf-form-input width-24" ng-model="style.props.url" data-ng-change="ctrl.render();">
+                            <span class="btn btn-danger btn-small" ng-click="theme.deleteStyle($index);ctrl.render();"><i class="fa fa-trash"></i></span>
                         </div>
+                        <div class="gf-form" ng-if="style.type === 'style'">
+                            <label class="gf-form-label width-16">Custom Style / CSS Override</label>
+                            <textarea class="gf-form-input width-24" style="width:100%" rows="5" ng-model="style.props.text" data-ng-change="ctrl.render();"></textarea>
+                            <span class="btn btn-danger btn-small" ng-click="theme.deleteStyle($index);ctrl.render();"><i class="fa fa-trash"></i></span>
+                        </div>
+
                     </div>
-                    <div class="gr-form-inline" ng-if="theme.stylesheets.length > 0" ng-repeat="stylesheet in theme.stylesheets track by $index">
+                    <div class="gr-form-inline">
                         <div class="gf-form">
-                            <label class="gf-form-label width-16">CSS {{$index+1}} URL</label>
-                            <input type="text" class="gf-form-input width-24" ng-model="stylesheet.url">
+                            <span class="gf-form-input btn btn-secondary width-12" ng-click="theme.addStyle('style');ctrl.render();">Add Custom CSS</span>
+                            <span class="gf-form-input btn btn-secondary width-12" ng-click="theme.addStyle('url');ctrl.render();">Add external URL</span>
                         </div>
                     </div>
                     <div class="gr-form-inline">
                         <div class="gf-form">
-                            <label class="gf-form-label width-16">Custom Style / CSS Overrides</label>
-                            <textarea class="gf-form-input width-24" style="width:100%" rows="10" ng-model="theme.custom_css" data-ng-change="ctrl.render();"></textarea>
-                        </div>
-                    </div>
-                    <div class="gr-form-inline" ng-if="$index !== 0">
-                        <div class="gf-form">
-                            <span class="gf-form-input btn btn-warning width-16" ng-click="ctrl.deleteTheme($index);ctrl.render();">Delete Theme</span>
+                            <span class="gf-form-input btn btn-danger width-12" ng-click="ctrl.deleteTheme($index);ctrl.render();" ng-if="$index !== 0">Delete Theme</span>
                         </div>
                     </div>
                 </div>
@@ -79,41 +80,3 @@
         </div>
     </div>
 </div>
-<!-- 
-<div class="boomtheme-panel">
-    <div id="boomtheme-editor-options">
-        <div class="editor-row">
-            <div class="section gf-form-group">
-                <div class="gr-form-line">
-                    <div class="gf-form">
-                        <h6 class="text-header">External Stylesheets</h6>
-                    </div>
-                    <div class="gr-form-inline">
-                        <div class="gf-form">
-                            <span class="btn btn-primary" ng-click="ctrl.addexternalCSS();">Add new Stylesheet URL</span>
-                            <div ng-repeat="externalCSS in ctrl.panel.externalCSSs track by $index">
-                                <input type="text" placeholder="CSS URL" class="gf-form-input width-12" ng-model="externalCSS.url" ng-blur="this.render()" ng-change="this.render()" ng-model-onlur>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="editor-row">
-            <div class="section gf-form-group">
-                <div class="gr-form-line">
-                    <div class="gf-form">
-                        <h6 class="text-header">Inline CSS</h6>
-                    </div>
-                    <div class="gr-form-inline">
-                        <div class="gf-form">
-                            <span class="mini-split"></span>
-                            <textarea class="gf-form-input width-24" style="width:100%" rows="10" ng-model="ctrl.panel.custom_css" data-ng-change="ctrl.render();"></textarea>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div> 
--->

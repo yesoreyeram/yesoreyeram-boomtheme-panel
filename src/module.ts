@@ -3,50 +3,71 @@
 import _ from "lodash";
 import { PanelCtrl } from "app/plugins/sdk";
 
+class BoomThemeStyle {
+    public type: string;
+    public props: any;
+    constructor(type, props) {
+        switch (type.toLowerCase()) {
+            case "style":
+                this.type = "style";
+                this.props = {
+                    text: props && props.text ? props.text : ""
+                };
+                break;
+            case "url":
+                this.type = "url";
+                this.props = {
+                    url: props && props.url ? props.url : ""
+                };
+                break;
+            default:
+                this.type = "none";
+                this.props = {};
+                break;
+
+        }
+    }
+}
+
 class BoomTheme {
     public name: string;
-    public stylesheets: any[];
-    public custom_css: string;
+    public styles: BoomThemeStyle[];
     constructor(options) {
         this.name = options.name || "New Theme";
-        this.stylesheets = options.stylesheets || [{
-            name: "External Style Sheet URL",
-            url: ""
-        }];
-        this.custom_css = options.custom_css || "";
+        this.styles = [
+            new BoomThemeStyle("url", { url: "" }),
+            new BoomThemeStyle("style", { text: `` })
+        ];
     }
-    public addStyleSheet(): void {
-        this.stylesheets.push({
-            name: "External Style Sheet URL",
-            url: ""
-        });
-    }
-    public removeStyleSheet(index: number): void {
-        this.stylesheets.splice(index, 1);
-    }
-    public moveStyleSheet(index: number, direction: string): void {
-        let tempElement = this.stylesheets[Number(index)];
-        if (direction.toUpperCase() === "UP") {
-            this.stylesheets[Number(index)] = this.stylesheets[Number(index) - 1];
-            this.stylesheets[Number(index) - 1] = tempElement;
-        }
-        if (direction.toUpperCase() === "DOWN") {
-            this.stylesheets[Number(index)] = this.stylesheets[Number(index) + 1];
-            this.stylesheets[Number(index) + 1] = tempElement;
+    public addStyle(type: string): void {
+        if (type.toLowerCase() === "style") {
+            this.styles.push(new BoomThemeStyle("style", {}));
+        } else if (type.toLowerCase() === "url") {
+            this.styles.push(new BoomThemeStyle("url", {}));
         }
 
     }
+    public deleteStyle(index: number): void {
+        this.styles.splice(index, 1);
+    }
     public getThemeContent(): string {
         let output = '';
-        if (this.stylesheets && this.stylesheets.length > 0) {
-            _.each(this.stylesheets, cssFile => {
-                if (cssFile && cssFile.url !== "") {
-                    output += `@import url('${cssFile.url}');
-    `;
+        if (this.styles && this.styles.length > 0) {
+            _.each(this.styles, style => {
+                if (style.type === "url") {
+                    if (style.props && style.props.url !== "") {
+                        output += `@import url('${style.props.url}');
+                        `;
+                    }
+
+                } else if (style.type === "style") {
+                    if (style.props && style.props.test !== "") {
+                        output += `${style.props.text || ''}
+                        `;
+                    }
                 }
             });
         }
-        output += this.custom_css || '';
         return output;
     }
 }
@@ -64,19 +85,25 @@ class BoomThemeCtl extends PanelCtrl {
         super($scope, $injector);
         _.defaults(this.panel, {});
         this.panel.themes = this.panel.themes || [new BoomTheme({ name: "Theme 1" })];
-        this.panel.externalCSSs = this.panel.externalCSSs || [];
         this.panel.activeThemeId = this.panel.activeThemeId || 0;
-        this.activeEditorTabIndex = this.panel.activeThemeId > 0 ? this.panel.activeThemeId : -1;
+        this.activeEditorTabIndex = this.panel.activeThemeId >= 0 ? this.panel.activeThemeId : -1;
         this.runtimeThemeSet = false;
-        this.runtimeThemeIndex = this.panel.activeThemeId > 0 ? this.panel.activeThemeId : 0;
+        this.runtimeThemeIndex = this.panel.activeThemeId >= 0 ? this.panel.activeThemeId : 0;
         this.updatePrototypes();
         this.events.on("init-edit-mode", this.onInitEditMode.bind(this));
     }
     private updatePrototypes(): void {
-        this.panel.themes.map(theme => {
-            Object.setPrototypeOf(theme, BoomTheme.prototype);
-            return theme;
-        });
+        if (this.panel.themes && this.panel.themes.length > 0) {
+            this.panel.themes.map(theme => {
+                Object.setPrototypeOf(theme, BoomTheme.prototype);
+                if (theme.styles && theme.styles.length > 0) {
+                    theme.styles.map(style => {
+                        Object.setPrototypeOf(style, BoomThemeStyle.prototype);
+                    });
+                }
+                return theme;
+            });
+        }
     }
     private onInitEditMode(): void {
         this.addEditorTab("Theme", "public/plugins/yesoreyeram-boomtheme-panel/partials/options.html", 2);
@@ -87,6 +114,8 @@ class BoomThemeCtl extends PanelCtrl {
             name: `Theme ${this.panel.themes.length + 1}`
         }));
         this.activeEditorTabIndex = this.panel.themes.length - 1;
+        this.runtimeThemeIndex = this.panel.themes.length - 1;
+        this.render();
     }
     public deleteTheme(index: number): void {
         if (index !== 0) {
@@ -111,15 +140,6 @@ class BoomThemeCtl extends PanelCtrl {
         this.runtimeThemeSet = true;
         this.runtimeThemeIndex = index;
         this.render();
-    }
-    public clearTheme() {
-        this.panel.activeThemeId = -999;
-        this.render();
-    }
-    public addexternalCSS(): void {
-        this.panel.externalCSSs.push({
-            url: ""
-        });
     }
     public limitText(text: string, maxlength: Number): string {
         if (text.split("").length > maxlength) {
