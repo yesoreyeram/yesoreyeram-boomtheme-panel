@@ -84,6 +84,7 @@ class BoomThemeCtl extends PanelCtrl {
     constructor($scope, $injector) {
         super($scope, $injector);
         _.defaults(this.panel, {});
+        this.panel.transparent = true;
         this.panel.themes = this.panel.themes || [new BoomTheme({ name: "Default" })];
         this.panel.activeThemeId = this.panel.activeThemeId || 0;
         this.activeEditorTabIndex = this.panel.activeThemeId >= 0 ? this.panel.activeThemeId : -1;
