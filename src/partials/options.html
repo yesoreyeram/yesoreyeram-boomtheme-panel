@@ -4,22 +4,31 @@
             <ul class="edit-sidemenu">
                 <li>
                     <a ng-click="ctrl.activeEditorTabIndex = -1">
-                        <i class="fa fa-gear" style="margin-right: 7px;"></i>
-                        <span ng-if="ctrl.activeEditorTabIndex === -1" style="margin-right: 7px;font-weight: bolder;color:orangered;">></span>
-                        Settings
+                        <span ng-if="ctrl.activeEditorTabIndex === -1" style="margin-right: 7px;color:orange;">
+                            <i class="fa fa-gear" style="margin-right: 7px;"></i> Settings
+                        </span>
+                        <span ng-if="ctrl.activeEditorTabIndex !== -1" style="margin-right: 7px;">
+                            <i class="fa fa-gear" style="margin-right: 7px;"></i> Settings
+                        </span>
                     </a>
                 </li>
                 <li ng-repeat="theme in ctrl.panel.themes track by $index" ng-click="ctrl.activeEditorTabIndex = $index;ctrl.setruntimeThemeIndex($index)">
                     <a>
-                        <span ng-if="ctrl.panel.activeThemeId === $index">
-                            <i class="fa fa-paint-brush" style="margin-right: 5px; color:green;"></i>
-                            <span ng-if="ctrl.activeEditorTabIndex === $index" style="margin-right: 7px;font-weight: bolder;color:orangered;">></span>
-                            {{ctrl.limitText(theme.name,15)}}
+                        <span ng-if="ctrl.activeEditorTabIndex === $index" style="margin-right: 7px;color:orange;">
+                            <span ng-if="ctrl.panel.activeThemeId === $index">
+                                <i class="fa fa-paint-brush" style="margin-right: 5px; color:green;"></i> {{ctrl.limitText(theme.name,15)}}
+                            </span>
+                            <span ng-if="ctrl.panel.activeThemeId !== $index">
+                                <i class="fa fa-paint-brush" style="margin-right: 5px;"></i> {{ctrl.limitText(theme.name,15)}}
+                            </span>
                         </span>
-                        <span ng-if="ctrl.panel.activeThemeId !== $index">
-                            <i class="fa fa-paint-brush" style="margin-right: 5px;"></i>
-                            <span ng-if="ctrl.activeEditorTabIndex === $index" style="margin-right: 7px;font-weight: bolder;color:orangered;">></span>
-                            {{ctrl.limitText(theme.name,15)}}
+                        <span ng-if="ctrl.activeEditorTabIndex !== $index" style="margin-right: 7px;">
+                            <span ng-if="ctrl.panel.activeThemeId === $index">
+                                <i class="fa fa-paint-brush" style="margin-right: 5px; color:green;"></i> {{ctrl.limitText(theme.name,15)}}
+                            </span>
+                            <span ng-if="ctrl.panel.activeThemeId !== $index">
+                                <i class="fa fa-paint-brush" style="margin-right: 5px;"></i> {{ctrl.limitText(theme.name,15)}}
+                            </span>
                         </span>
                     </a>
                 </li>
@@ -48,7 +57,7 @@
                             <label class="gf-form-label width-16">Theme Name </label>
                             <input type="text" class="gf-form-input width-24" ng-model="theme.name">
                             <span ng-click="ctrl.setThemeAsDefault($index)" class="btn btn-success" ng-if="ctrl.panel.activeThemeId === $index">Applied as default theme <i class="fa fa-check-circle"></i></span>
-                            <span ng-click="ctrl.setThemeAsDefault($index)" class="btn btn-secondary" ng-if="ctrl.panel.activeThemeId !== $index">Apply as default theme  <i class="fa fa-question-circle"></i></span>
+                            <span ng-click="ctrl.setThemeAsDefault($index)" class="btn btn-secondary" ng-if="ctrl.panel.activeThemeId !== $index">Apply as default theme <i class="fa fa-question-circle"></i></span>
                         </div>
                     </div>
                     <div class="gr-form-inline" ng-if="theme.styles.length > 0" ng-repeat="style in theme.styles track by $index">
@@ -77,7 +86,7 @@
                     </div>
                     <div class="gr-form-inline">
                         <div class="gf-form">
-                            <span class="gf-form-input btn btn-danger width-12" ng-click="ctrl.deleteTheme($index);ctrl.render();" ng-if="$index !== 0">Delete Theme</span>
+                            <span class="gf-form-input btn btn-danger width-12" ng-click="ctrl.deleteTheme($index);ctrl.render();">Delete Theme</span>
                         </div>
                     </div>
                 </div>

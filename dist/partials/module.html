@@ -2,9 +2,6 @@
     <div id="boom-theme"></div>
     <div id="boom-theme-switcher" ng-if="ctrl.panel.disableThemePicker === undefined || ctrl.panel.disableThemePicker === false">
         <div style="text-align:center;margin-top:10px;">
-            <span class="btn btn-inverse" style="margin-right:20px;">
-                    Themes
-            </span>            
             <span ng-repeat="theme in ctrl.panel.themes track by $index" ng-click="ctrl.setruntimeThemeIndex($index)" class="btn btn-inverse" style="margin-right:20px;">
                     <i class="fa fa-paint-brush" style="margin-right: 5px;"></i>{{theme.name}}
             </span>            

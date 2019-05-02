@@ -3,31 +3,48 @@
 import _ from "lodash";
 import { PanelCtrl } from "app/plugins/sdk";
 
+const CONFIG = {
+    THEME_STYLES: {
+        NONE: "none",
+        STYLE: "style",
+        URL: "url",
+        BG_IMAGE: "bgimage"
+    },
+    THEME_ID: {
+        DARK: -2000,
+        LIGHT: -3000
+    }
+    ,
+    FIRST_THEME_NAME: "Boom Theme",
+    DEFAULT_THEME_NAME: "New Theme",
+    DEFAULT_THEME_BG_IMAGE: `https://images.unsplash.com/photo-1554316224-0ed275ff54ea?w=751&q=80`
+};
+
 class BoomThemeStyle {
     public type: string;
     public props: any;
     constructor(type, props) {
         switch (type.toLowerCase()) {
-            case "style":
-                this.type = "style";
+            case CONFIG.THEME_STYLES.STYLE:
+                this.type = CONFIG.THEME_STYLES.STYLE;
                 this.props = {
                     text: props && props.text ? props.text : ""
                 };
                 break;
-            case "url":
-                this.type = "url";
+            case CONFIG.THEME_STYLES.URL:
+                this.type = CONFIG.THEME_STYLES.URL;
                 this.props = {
                     url: props && props.url ? props.url : ""
                 };
                 break;
-            case "bgimage":
-                this.type = "bgimage";
+            case CONFIG.THEME_STYLES.BG_IMAGE:
+                this.type = CONFIG.THEME_STYLES.BG_IMAGE;
                 this.props = {
                     url: props && props.url ? props.url : ""
                 };
                 break;
             default:
-                this.type = "none";
+                this.type = CONFIG.THEME_STYLES.NONE;
                 this.props = {};
                 break;
 
@@ -39,10 +56,11 @@ class BoomTheme {
     public name: string;
     public styles: BoomThemeStyle[];
     constructor(options) {
-        this.name = options.name || "New Theme";
+        this.name = options.name || CONFIG.DEFAULT_THEME_NAME;
         this.styles = [
-            new BoomThemeStyle("url", { url: "" }),
-            new BoomThemeStyle("style", { text: `` })
+            new BoomThemeStyle(CONFIG.THEME_STYLES.BG_IMAGE, { url: CONFIG.DEFAULT_THEME_BG_IMAGE }),
+            new BoomThemeStyle(CONFIG.THEME_STYLES.URL, { url: "" }),
+            new BoomThemeStyle(CONFIG.THEME_STYLES.STYLE, { text: `` }),
         ];
     }
     public addStyle(type: string): void {
@@ -99,7 +117,7 @@ class BoomThemeCtl extends PanelCtrl {
         super($scope, $injector);
         _.defaults(this.panel, {});
         this.panel.transparent = true;
-        this.panel.themes = this.panel.themes || [new BoomTheme({ name: "Sample" })];
+        this.panel.themes = this.panel.themes || [new BoomTheme({ name: CONFIG.FIRST_THEME_NAME })];
         this.panel.activeThemeId = this.panel.activeThemeId || 0;
         this.activeEditorTabIndex = this.panel.activeThemeId >= 0 ? this.panel.activeThemeId : -1;
         this.runtimeThemeSet = false;
@@ -133,17 +151,15 @@ class BoomThemeCtl extends PanelCtrl {
         this.render();
     }
     public deleteTheme(index: number): void {
-        if (index !== 0) {
-            this.panel.themes.splice(index, 1);
-            if (this.panel.activeThemeId === index) {
-                this.panel.activeThemeId = 0;
-            }
-            if (this.activeEditorTabIndex === index) {
-                this.activeEditorTabIndex = -1;
-            }
-            if (this.runtimeThemeIndex === index) {
-                this.runtimeThemeIndex = 0;
-            }
+        this.panel.themes.splice(index, 1);
+        if (this.panel.activeThemeId === index) {
+            this.panel.activeThemeId = 0;
+        }
+        if (this.runtimeThemeIndex === index) {
+            this.runtimeThemeIndex = 0;
+        }
+        if (this.activeEditorTabIndex === index) {
+            this.activeEditorTabIndex = this.ctrl.panel.themes.length - 1;
         }
     }
     public setThemeAsDefault(index: number) {
@@ -174,9 +190,9 @@ class BoomThemeCtl extends PanelCtrl {
 let getThemeCSSFile = function (mode: string): string {
     let filename = '';
     if (["dark", "light"].indexOf(mode.toLowerCase()) > -1 && window.performance) {
-        let appfiles = window.performance.getEntries().map(e => e.name).filter(e => e.indexOf(".css") > -1).filter(e => e.indexOf("/public/build/grafana.app") > -1);
+        let appfiles = window.performance.getEntries().map(e => e.name).filter(e => e.endsWith(".js")).filter(e => e.indexOf("/public/build/app.") > -1);
         if (appfiles && appfiles.length > 0) {
-            filename = appfiles[0].replace(`/public/build/grafana.app`, `/public/build/grafana.${mode.toLowerCase()}`);
+            filename = appfiles[0].replace(`/public/build/app.`, `/public/build/grafana.${mode.toLowerCase()}.`).slice(0, -3) + ".css";
         }
     }
     return filename;
@@ -184,6 +200,15 @@ let getThemeCSSFile = function (mode: string): string {
 
 BoomThemeCtl.prototype.render = function () {
     let output = '';
+
+    if (this.ctrl.panel.title === "Panel Title") {
+        this.ctrl.panel.title = ""
+    }
+    if (this.ctrl.panel.gridPos && this.ctrl.panel.gridPos.x === 0 && this.ctrl.panel.gridPos.y === 0) {
+        this.ctrl.panel.gridPos.w = 24;
+        this.ctrl.panel.gridPos.h = 3;
+    }
+
     _.each(this.panel.themes, (theme, index) => {
         if (this.runtimeThemeSet === false) {
             if (this.panel.activeThemeId === index && this.panel.activeThemeId >= 0) {
@@ -196,10 +221,10 @@ BoomThemeCtl.prototype.render = function () {
         }
     });
     if (this.runtimeThemeSet === true) {
-        if (this.runtimeThemeIndex === -2000) {
+        if (this.runtimeThemeIndex === CONFIG.THEME_ID.DARK) {
             output += `@import url('${getThemeCSSFile("dark")}');
             `;
-        } else if (this.runtimeThemeIndex === -3000) {
+        } else if (this.runtimeThemeIndex === CONFIG.THEME_ID.LIGHT) {
             output += `@import url('${getThemeCSSFile("light")}');
             `;
         }
