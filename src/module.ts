@@ -4,20 +4,19 @@ import _ from "lodash";
 import { PanelCtrl } from "app/plugins/sdk";
 
 const CONFIG = {
-    THEME_STYLES: {
-        NONE: "none",
-        STYLE: "style",
-        URL: "url",
-        BG_IMAGE: "bgimage"
-    },
+    DEFAULT_THEME_BG_IMAGE: `https://images.unsplash.com/photo-1554316224-0ed275ff54ea?w=751&q=80`,
+    DEFAULT_THEME_NAME: "New Theme",
+    FIRST_THEME_NAME: "Boom Theme",
     THEME_ID: {
         DARK: -2000,
         LIGHT: -3000
+    },
+    THEME_STYLES: {
+        BG_IMAGE: "bgimage",
+        NONE: "none",
+        STYLE: "style",
+        URL: "url",
     }
-    ,
-    FIRST_THEME_NAME: "Boom Theme",
-    DEFAULT_THEME_NAME: "New Theme",
-    DEFAULT_THEME_BG_IMAGE: `https://images.unsplash.com/photo-1554316224-0ed275ff54ea?w=751&q=80`
 };
 
 class BoomThemeStyle {
@@ -202,7 +201,7 @@ BoomThemeCtl.prototype.render = function () {
     let output = '';
 
     if (this.ctrl.panel.title === "Panel Title") {
-        this.ctrl.panel.title = ""
+        this.ctrl.panel.title = "";
     }
     if (this.ctrl.panel.gridPos && this.ctrl.panel.gridPos.x === 0 && this.ctrl.panel.gridPos.y === 0) {
         this.ctrl.panel.gridPos.w = 24;
