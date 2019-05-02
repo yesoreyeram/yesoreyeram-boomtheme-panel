@@ -10,17 +10,12 @@ Theme switcher with custom styles / themes for grafana dashboards.
 
 - Theme switcher
 - Multiple themes per dashboard
-- Easy theme builder
+- Theme builder
 - External stylesheets support
 - Add inline styles to themes to override styles
 - Add many themes as possible without rebuilding / restarting grafana
 - Users with view only option can also pick their favourite theme
 - Themes applicable to current dashboard only
-
-# Coming Soon / TO DO
-
-- Boom Themes / Themes repository. Collection of themes / component custom styles.
-- Extract color structure from Grafana core style to make quick color pallet based themes.
 
 # Creating Theme
 
