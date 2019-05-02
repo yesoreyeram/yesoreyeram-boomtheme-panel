@@ -4,7 +4,7 @@ import _ from "lodash";
 import { PanelCtrl } from "app/plugins/sdk";
 
 const CONFIG = {
-    DEFAULT_THEME_BG_IMAGE: `https://images.unsplash.com/photo-1554316224-0ed275ff54ea?w=751&q=80`,
+    DEFAULT_THEME_BG_IMAGE: `https://images.unsplash.com/photo-1534796636912-3b95b3ab5986`,
     DEFAULT_THEME_NAME: "New Theme",
     FIRST_THEME_NAME: "Boom Theme",
     THEME_ID: {
