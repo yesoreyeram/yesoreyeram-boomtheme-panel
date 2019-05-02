@@ -89,46 +89,53 @@ class BoomTheme {
     public deleteStyle(index: number): void {
         this.styles.splice(index, 1);
     }
-    public getThemeContent(): string {
-        let output = '';
-        if (this.styles && this.styles.length > 0) {
-            _.each(this.styles, style => {
-                if (style.type === CONFIG.THEME_STYLES.URL) {
-                    if (style.props && style.props.url !== "") {
-                        output += `@import url('${style.props.url}');
+    private constructTheme(styles: any[]): string {
+        let output = ``;
+        _.each(styles, style => {
+            if (style.type === CONFIG.THEME_STYLES.URL) {
+                if (style.props && style.props.url !== "") {
+                    output += `@import url('${style.props.url}');
+                    `;
+                }
+            } else if (style.type === CONFIG.THEME_STYLES.BASE_THEME) {
+                if (style.props && style.props.theme !== "") {
+                    if (style.props.theme.toLowerCase() === CONFIG.BASE_THEMES.DARK.id) {
+                        output += `@import url('${getThemeCSSFile(CONFIG.BASE_THEMES.DARK.id)}');
                         `;
-                    }
-                } else if (style.type === CONFIG.THEME_STYLES.BASE_THEME) {
-                    if (style.props && style.props.theme !== "") {
-                        if (style.props.theme.toLowerCase() === CONFIG.BASE_THEMES.DARK.id) {
-                            output += `@import url('${getThemeCSSFile(CONFIG.BASE_THEMES.DARK.id)}');
-                            `;
 
-                        } else if (style.props.theme.toLowerCase() === CONFIG.BASE_THEMES.LIGHT.id) {
-                            output += `@import url('${getThemeCSSFile(CONFIG.BASE_THEMES.LIGHT.id)}');
-                            `;
-                        }
-                    }
-                } else if (style.type === CONFIG.THEME_STYLES.STYLE) {
-                    if (style.props && style.props.text !== "") {
-                        output += `${style.props.text || ''}
-                        `;
-                    }
-                } else if (style.type === CONFIG.THEME_STYLES.BG_IMAGE) {
-                    if (style.props && style.props.url !== "") {
-                        output += `
-.main-view, .sidemenu-open .sidemenu, .navbar, .dashboard-container {
-    background: url("${style.props.url}")
-    no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
+                    } else if (style.props.theme.toLowerCase() === CONFIG.BASE_THEMES.LIGHT.id) {
+                        output += `@import url('${getThemeCSSFile(CONFIG.BASE_THEMES.LIGHT.id)}');
                         `;
                     }
                 }
-            });
+            } else if (style.type === CONFIG.THEME_STYLES.STYLE) {
+                if (style.props && style.props.text !== "") {
+                    output += `${style.props.text || ''}
+                    `;
+                }
+            } else if (style.type === CONFIG.THEME_STYLES.BG_IMAGE) {
+                if (style.props && style.props.url !== "") {
+                    output += `
+.main-view, .sidemenu-open .sidemenu, .navbar, .dashboard-container {
+background: url("${style.props.url}")
+no-repeat center center fixed;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-size: cover;
+}
+                    `;
+                }
+            }
+        });
+        return output;
+    }
+    public getThemeContent(): string {
+        let output = '';
+        if (this.styles && this.styles.length > 0) {
+            output += this.constructTheme(this.styles.filter(style => style.type === CONFIG.THEME_STYLES.URL));
+            output += this.constructTheme(this.styles.filter(style => style.type === CONFIG.THEME_STYLES.STYLE));
+            output += this.constructTheme(this.styles.filter(style => style.type !== CONFIG.THEME_STYLES.URL && style.type !== CONFIG.THEME_STYLES.STYLE));
         }
         return output;
     }

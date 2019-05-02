@@ -1,6 +1,7 @@
 | Version | Changes                                                    |
 | --------|------------------------------------------------------------|
 | 0.0.4   | Base theme option                                          |
+|         | Bug fixes (#4)                                             |
 | 0.0.3   | Schema changes  (BREAKING)                                 |
 |         | Option to switch between default dark,light themes         | 
 |         | BG Image as theme option                                   |
