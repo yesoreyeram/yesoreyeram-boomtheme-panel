@@ -56,8 +56,8 @@ class BoomTheme {
     public styles: BoomThemeStyle[];
     constructor(options) {
         this.name = options.name || CONFIG.DEFAULT_THEME_NAME;
-        this.styles = [
-            new BoomThemeStyle(CONFIG.THEME_STYLES.BG_IMAGE, { url: CONFIG.DEFAULT_THEME_BG_IMAGE }),
+        this.styles = options.styles || [
+            new BoomThemeStyle(CONFIG.THEME_STYLES.BG_IMAGE, { url: "" }),
             new BoomThemeStyle(CONFIG.THEME_STYLES.URL, { url: "" }),
             new BoomThemeStyle(CONFIG.THEME_STYLES.STYLE, { text: `` }),
         ];
@@ -116,7 +116,14 @@ class BoomThemeCtl extends PanelCtrl {
         super($scope, $injector);
         _.defaults(this.panel, {});
         this.panel.transparent = true;
-        this.panel.themes = this.panel.themes || [new BoomTheme({ name: CONFIG.FIRST_THEME_NAME })];
+        this.panel.themes = this.panel.themes || [
+            new BoomTheme({
+                name: CONFIG.FIRST_THEME_NAME,
+                styles: [
+                    new BoomThemeStyle(CONFIG.THEME_STYLES.BG_IMAGE, { url: CONFIG.DEFAULT_THEME_BG_IMAGE })
+                ]
+            })
+        ];
         this.panel.activeThemeId = this.panel.activeThemeId || 0;
         this.activeEditorTabIndex = this.panel.activeThemeId >= 0 ? this.panel.activeThemeId : -1;
         this.runtimeThemeSet = false;
@@ -198,8 +205,8 @@ let getThemeCSSFile = function (mode: string): string {
 };
 
 BoomThemeCtl.prototype.render = function () {
-    let output = '';
 
+    // #region Panel UI Options
     if (this.ctrl.panel.title === "Panel Title") {
         this.ctrl.panel.title = "";
     }
@@ -207,7 +214,10 @@ BoomThemeCtl.prototype.render = function () {
         this.ctrl.panel.gridPos.w = 24;
         this.ctrl.panel.gridPos.h = 3;
     }
+    // #endregion
 
+    // #region Themes Rendering
+    let output = '';
     _.each(this.panel.themes, (theme, index) => {
         if (this.runtimeThemeSet === false) {
             if (this.panel.activeThemeId === index && this.panel.activeThemeId >= 0) {
@@ -228,12 +238,13 @@ BoomThemeCtl.prototype.render = function () {
             `;
         }
     }
-
     const style = document.createElement('style');
     style.type = 'text/css';
     style.appendChild(document.createTextNode(output));
     this.elem.find("#boom-theme").html("");
     this.elem.find("#boom-theme").append(style);
+    // #endregion
+
 };
 
 export { BoomThemeCtl as PanelCtrl };
