@@ -63,7 +63,7 @@
                     <div class="gr-form-inline" ng-if="theme.styles.length > 0" ng-repeat="style in theme.styles track by $index">
                         <div class="gf-form" ng-if="style.type === 'basetheme'">
                             <label class="gf-form-label width-16">Base Theme</label>
-                            <select class="gf-form-input width-24" ng-model="style.props.theme" ng-options="f.value as f.text for f in ctrl.base_themes"
+                            <select class="gf-form-input width-24" ng-model="style.props.theme" ng-options="f.value as f.text for f in ctrl.base_theme_options"
                                 ng-change="ctrl.render()"></select>
                         </div>
                         <div class="gf-form" ng-if="style.type === 'url'">

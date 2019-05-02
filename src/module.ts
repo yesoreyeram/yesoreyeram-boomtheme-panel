@@ -4,18 +4,26 @@ import _ from "lodash";
 import { PanelCtrl } from "app/plugins/sdk";
 
 const CONFIG = {
-    BASE_THEMES: [
-        { text: "Default", value: "default" },
-        { text: "Dark Theme", value: "dark" },
-        { text: "Light Theme", value: "light" },
-    ],
+    BASE_THEMES: {
+        DARK: {
+            id: "dark",
+            index_id: -2000,
+            name: "Dark Theme"
+        },
+        DEFAULT: {
+            id: "default",
+            index_id: -1000,
+            name: "Default Theme"
+        },
+        LIGHT: {
+            id: "light",
+            index_id: -3000,
+            name: "Light Theme"
+        }
+    },
     DEFAULT_THEME_BG_IMAGE: `https://images.unsplash.com/photo-1534796636912-3b95b3ab5986`,
     DEFAULT_THEME_NAME: "New Theme",
     FIRST_THEME_NAME: "Boom Theme",
-    THEME_ID: {
-        DARK: -2000,
-        LIGHT: -3000
-    },
     THEME_STYLES: {
         BASE_THEME: "basetheme",
         BG_IMAGE: "bgimage",
@@ -69,7 +77,7 @@ class BoomTheme {
     constructor(options) {
         this.name = options.name || CONFIG.DEFAULT_THEME_NAME;
         this.styles = options.styles || [
-            new BoomThemeStyle(CONFIG.THEME_STYLES.BASE_THEME, { theme: "default" }),
+            new BoomThemeStyle(CONFIG.THEME_STYLES.BASE_THEME, { theme: CONFIG.BASE_THEMES.DEFAULT.id }),
             new BoomThemeStyle(CONFIG.THEME_STYLES.BG_IMAGE, { url: "" }),
             new BoomThemeStyle(CONFIG.THEME_STYLES.URL, { url: "" }),
             new BoomThemeStyle(CONFIG.THEME_STYLES.STYLE, { text: `` }),
@@ -92,12 +100,12 @@ class BoomTheme {
                     }
                 } else if (style.type === CONFIG.THEME_STYLES.BASE_THEME) {
                     if (style.props && style.props.theme !== "") {
-                        if (style.props.theme.toLowerCase() === "dark") {
-                            output += `@import url('${getThemeCSSFile("dark")}');
+                        if (style.props.theme.toLowerCase() === CONFIG.BASE_THEMES.DARK.id) {
+                            output += `@import url('${getThemeCSSFile(CONFIG.BASE_THEMES.DARK.id)}');
                             `;
 
-                        } else if (style.props.theme.toLowerCase() === "light") {
-                            output += `@import url('${getThemeCSSFile("light")}');
+                        } else if (style.props.theme.toLowerCase() === CONFIG.BASE_THEMES.LIGHT.id) {
+                            output += `@import url('${getThemeCSSFile(CONFIG.BASE_THEMES.LIGHT.id)}');
                             `;
                         }
                     }
@@ -135,7 +143,12 @@ class BoomThemeCtl extends PanelCtrl {
     public activeEditorTabIndex: number;
     public runtimeThemeSet: Boolean;
     public runtimeThemeIndex: number;
-    public base_themes: any = CONFIG.BASE_THEMES;
+    public base_theme_options: any = [CONFIG.BASE_THEMES.DEFAULT, CONFIG.BASE_THEMES.DARK, CONFIG.BASE_THEMES.LIGHT].map(theme => {
+        return {
+            text: theme.name,
+            value: theme.id
+        };
+    });
     constructor($scope, $injector) {
         super($scope, $injector);
         _.defaults(this.panel, {});
@@ -144,7 +157,7 @@ class BoomThemeCtl extends PanelCtrl {
             new BoomTheme({
                 name: CONFIG.FIRST_THEME_NAME,
                 styles: [
-                    new BoomThemeStyle(CONFIG.THEME_STYLES.BASE_THEME, { theme: "default" }),
+                    new BoomThemeStyle(CONFIG.THEME_STYLES.BASE_THEME, { theme: CONFIG.BASE_THEMES.DEFAULT.id }),
                     new BoomThemeStyle(CONFIG.THEME_STYLES.BG_IMAGE, { url: CONFIG.DEFAULT_THEME_BG_IMAGE })
                 ]
             })
@@ -255,11 +268,11 @@ BoomThemeCtl.prototype.render = function () {
         }
     });
     if (this.runtimeThemeSet === true) {
-        if (this.runtimeThemeIndex === CONFIG.THEME_ID.DARK) {
-            output += `@import url('${getThemeCSSFile("dark")}');
+        if (this.runtimeThemeIndex === CONFIG.BASE_THEMES.DARK.index_id) {
+            output += `@import url('${getThemeCSSFile(CONFIG.BASE_THEMES.DARK.id)}');
             `;
-        } else if (this.runtimeThemeIndex === CONFIG.THEME_ID.LIGHT) {
-            output += `@import url('${getThemeCSSFile("light")}');
+        } else if (this.runtimeThemeIndex === CONFIG.BASE_THEMES.LIGHT.index_id) {
+            output += `@import url('${getThemeCSSFile(CONFIG.BASE_THEMES.LIGHT.id)}');
             `;
         }
     }
