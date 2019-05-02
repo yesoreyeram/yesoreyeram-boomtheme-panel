@@ -1,37 +1,53 @@
 # Boom Theme Panel
 
-Custom styles / themes to grafana dashboards. You can customize any dashboard using external stylesheets / inline style.
+Theme switcher with custom styles / themes for grafana dashboards.
 
-![image](https://user-images.githubusercontent.com/153843/57007587-a87ba580-6be1-11e9-8a2e-a1d571ae59d6.png)
+![image](https://user-images.githubusercontent.com/153843/57070256-ba874200-6cce-11e9-85f5-e0a036eb306b.png)
 
-![image](https://user-images.githubusercontent.com/153843/57007597-c0ebc000-6be1-11e9-9293-70def425ea66.png)
+![image](https://user-images.githubusercontent.com/153843/57070201-99265600-6cce-11e9-9a9c-734121df7cb8.png)
 
 # Features
 
-* Multiple themes per dashboard
-* Add zero or more than one external style sheets to a theme
-* Add inline styles to themes to override styles 
-* Themes applicable to current dashboard only
-* Switch between Dark / Light Themes
-* Users with view only option can also pick their favourite theme
-* Add many themes as possible without rebuilding/restarting grafana
+- Theme switcher
+- Multiple themes per dashboard
+- Easy theme builder
+- External stylesheets support
+- Add inline styles to themes to override styles
+- Add many themes as possible without rebuilding / restarting grafana
+- Users with view only option can also pick their favourite theme
+- Themes applicable to current dashboard only
 
 # Coming Soon / TO DO
 
-* Boom Themes / Themes repository
-* Extract color structure from Grafana core style to make quick color pallet based themes.
+- Boom Themes / Themes repository. Collection of themes / component custom styles.
+- Extract color structure from Grafana core style to make quick color pallet based themes.
+
+# Creating Theme
+
+Themes can be created with multiple building blocks like background image, base theme etc.
+
+| Property                    | Description                                                                                              |
+| --------------------------- | -------------------------------------------------------------------------------------------------------- |
+| Base theme                  | Themes can be built on top of default/dark/light theme. Default is **Default Theme**                     |
+| Background image            | Optional property. Can be blank. If specified more than once, last wins. Value should be valid image URL |
+| CSS url                     | External theme file. Should be valid CSS file URL                                                        |
+| Custom Style / CSS Override | CSS Styles. Should be valid css                                                                          |
 
 # Supported Grafana version
 
 This grafana plugin is tested with the grafna versions 6.x. But other versions are also expected to work.
 
-# Notes 
+# Notes
 
-* When adding external stylesheets, make sure CORS enabled for those domains.
-* To make panel invisible : Modify following theme panel settings:  
-    * transparent = true 
-    * title = ""  
-    * Disable Theme Picker using panel settings
-    * Move this panel to the bottom of the dashboard
-    * Adjust the height and width if required.
-* This plugin is in very much WIP / dev stage. Expect breaking changes & bugs.
+- When adding external stylesheets, make sure CORS enabled for those domains.
+- To make panel invisible : Modify following theme panel settings:
+  - transparent = true
+  - title = ""
+  - Disable Theme Picker using panel settings
+  - Move this panel to the bottom of the dashboard
+  - Adjust the height and width if required.
+- This plugin is in very much WIP / dev stage. Expect breaking changes & bugs.
+
+# Known issues
+
+- If any custom plugin is used, dark/light theme switch, base theme will not work for those custom plugins. Refer [this](https://github.com/yesoreyeram/yesoreyeram-boomtheme-panel/issues/3) github issue

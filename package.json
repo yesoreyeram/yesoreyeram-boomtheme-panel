@@ -1,7 +1,7 @@
 {
   "name": "yesoreyeram-boomtheme-panel",
-  "version": "0.0.3",
-  "description": "Template for Boom Panels",
+  "version": "0.0.4",
+  "description": "Themes for Grafana",
   "main": "dist/module.js",
   "scripts": {
     "build": "grunt",

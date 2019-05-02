@@ -2,15 +2,15 @@
   "type": "panel",
   "name": "Boom Theme",
   "id": "yesoreyeram-boomtheme-panel",
-  "dataFormats": ["table","timeseries"],
+  "dataFormats": [],
   "info": {
-    "version": "0.0.3",
-    "description": "Template for Boom Panels",
+    "version": "0.0.4",
+    "description": "Themes for Grafana",
     "author": {
       "name": "Sriramajeyam Sugumaran",
       "url": "https://www.google.com/search?q=Sriramajeyam+Sugumaran"
     },
-    "keywords": ["grafana", "plugin", "panel"],
+    "keywords": ["grafana", "plugin", "panel", "themes"],
     "links": [
       {
         "name": "Github",

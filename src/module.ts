@@ -4,6 +4,11 @@ import _ from "lodash";
 import { PanelCtrl } from "app/plugins/sdk";
 
 const CONFIG = {
+    BASE_THEMES: [
+        { text: "Default", value: "default" },
+        { text: "Dark Theme", value: "dark" },
+        { text: "Light Theme", value: "light" },
+    ],
     DEFAULT_THEME_BG_IMAGE: `https://images.unsplash.com/photo-1534796636912-3b95b3ab5986`,
     DEFAULT_THEME_NAME: "New Theme",
     FIRST_THEME_NAME: "Boom Theme",
@@ -12,6 +17,7 @@ const CONFIG = {
         LIGHT: -3000
     },
     THEME_STYLES: {
+        BASE_THEME: "basetheme",
         BG_IMAGE: "bgimage",
         NONE: "none",
         STYLE: "style",
@@ -24,6 +30,12 @@ class BoomThemeStyle {
     public props: any;
     constructor(type, props) {
         switch (type.toLowerCase()) {
+            case CONFIG.THEME_STYLES.BASE_THEME:
+                this.type = CONFIG.THEME_STYLES.BASE_THEME;
+                this.props = {
+                    theme: props && props.theme ? props.theme : ""
+                };
+                break;
             case CONFIG.THEME_STYLES.STYLE:
                 this.type = CONFIG.THEME_STYLES.STYLE;
                 this.props = {
@@ -57,6 +69,7 @@ class BoomTheme {
     constructor(options) {
         this.name = options.name || CONFIG.DEFAULT_THEME_NAME;
         this.styles = options.styles || [
+            new BoomThemeStyle(CONFIG.THEME_STYLES.BASE_THEME, { theme: "default" }),
             new BoomThemeStyle(CONFIG.THEME_STYLES.BG_IMAGE, { url: "" }),
             new BoomThemeStyle(CONFIG.THEME_STYLES.URL, { url: "" }),
             new BoomThemeStyle(CONFIG.THEME_STYLES.STYLE, { text: `` }),
@@ -72,18 +85,28 @@ class BoomTheme {
         let output = '';
         if (this.styles && this.styles.length > 0) {
             _.each(this.styles, style => {
-                if (style.type === "url") {
+                if (style.type === CONFIG.THEME_STYLES.URL) {
                     if (style.props && style.props.url !== "") {
                         output += `@import url('${style.props.url}');
                         `;
                     }
+                } else if (style.type === CONFIG.THEME_STYLES.BASE_THEME) {
+                    if (style.props && style.props.theme !== "") {
+                        if (style.props.theme.toLowerCase() === "dark") {
+                            output += `@import url('${getThemeCSSFile("dark")}');
+                            `;
 
-                } else if (style.type === "style") {
+                        } else if (style.props.theme.toLowerCase() === "light") {
+                            output += `@import url('${getThemeCSSFile("light")}');
+                            `;
+                        }
+                    }
+                } else if (style.type === CONFIG.THEME_STYLES.STYLE) {
                     if (style.props && style.props.text !== "") {
                         output += `${style.props.text || ''}
                         `;
                     }
-                } else if (style.type === "bgimage") {
+                } else if (style.type === CONFIG.THEME_STYLES.BG_IMAGE) {
                     if (style.props && style.props.url !== "") {
                         output += `
 .main-view, .sidemenu-open .sidemenu, .navbar, .dashboard-container {
@@ -112,6 +135,7 @@ class BoomThemeCtl extends PanelCtrl {
     public activeEditorTabIndex: number;
     public runtimeThemeSet: Boolean;
     public runtimeThemeIndex: number;
+    public base_themes: any = CONFIG.BASE_THEMES;
     constructor($scope, $injector) {
         super($scope, $injector);
         _.defaults(this.panel, {});
@@ -120,6 +144,7 @@ class BoomThemeCtl extends PanelCtrl {
             new BoomTheme({
                 name: CONFIG.FIRST_THEME_NAME,
                 styles: [
+                    new BoomThemeStyle(CONFIG.THEME_STYLES.BASE_THEME, { theme: "default" }),
                     new BoomThemeStyle(CONFIG.THEME_STYLES.BG_IMAGE, { url: CONFIG.DEFAULT_THEME_BG_IMAGE })
                 ]
             })
