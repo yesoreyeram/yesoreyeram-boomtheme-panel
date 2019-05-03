@@ -119,13 +119,13 @@ class BoomTheme {
             } else if (style.type === CONFIG.THEME_STYLES.BG_IMAGE) {
                 if (style.props && style.props.url !== "") {
                     output += `
-.main-view, .sidemenu-open .sidemenu, .navbar, .dashboard-container {
-background: url("${style.props.url}")
-no-repeat center center fixed;
--webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
-background-size: cover;
+.main-view, .sidemenu, .sidemenu-open .sidemenu, .navbar, .dashboard-container {
+    background: url("${style.props.url}")
+    no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
                     `;
                 }
