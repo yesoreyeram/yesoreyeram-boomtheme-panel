@@ -1,5 +1,6 @@
 | Version | Changes                                                    |
 | --------|------------------------------------------------------------|
+| 0.1.0   | **First version for release**                              |
 | 0.0.4   | Base theme option                                          |
 |         | Bug fixes (#4)                                             |
 | 0.0.3   | Schema changes  (BREAKING)                                 |
