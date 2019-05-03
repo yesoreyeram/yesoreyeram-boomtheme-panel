@@ -21,9 +21,12 @@ const CONFIG = {
             name: "Light Theme"
         }
     },
-    DEFAULT_THEME_BG_IMAGE: `https://images.unsplash.com/photo-1534796636912-3b95b3ab5986`,
+    DEFAULT_THEME_BG_IMAGE: `https://images.unsplash.com/photo-1524334228333-0f6db392f8a1`, // Image Credits : https://unsplash.com/photos/fX-qWsXl5x8
     DEFAULT_THEME_NAME: "New Theme",
-    FIRST_THEME_NAME: "Boom Theme",
+    DEFAULT_THEME_STYLE: `.panel-container {
+    background-color: rgba(0,0,0,0.3);
+}`,
+    FIRST_THEME_NAME: "Night Theme",
     THEME_STYLES: {
         BASE_THEME: "basetheme",
         BG_IMAGE: "bgimage",
@@ -165,7 +168,8 @@ class BoomThemeCtl extends PanelCtrl {
                 name: CONFIG.FIRST_THEME_NAME,
                 styles: [
                     new BoomThemeStyle(CONFIG.THEME_STYLES.BASE_THEME, { theme: CONFIG.BASE_THEMES.DEFAULT.id }),
-                    new BoomThemeStyle(CONFIG.THEME_STYLES.BG_IMAGE, { url: CONFIG.DEFAULT_THEME_BG_IMAGE })
+                    new BoomThemeStyle(CONFIG.THEME_STYLES.BG_IMAGE, { url: CONFIG.DEFAULT_THEME_BG_IMAGE }),
+                    new BoomThemeStyle(CONFIG.THEME_STYLES.STYLE,{ text : CONFIG.DEFAULT_THEME_STYLE })
                 ]
             })
         ];
