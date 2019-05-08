@@ -32,6 +32,12 @@ Themes can be created with multiple building blocks like background image, base 
 
 This grafana plugin is tested with the grafna versions 6.x. But other versions are also expected to work.
 
+# Work in progress
+
+* Time based automatic theme switch - Automatically switch dark themes during night hours.
+* Color palette based themes - Pick your own background/foregroud colors
+* Font size adjuster - Viewers will be able to adjust their dashboard font sizes
+
 # Notes
 
 - When adding external stylesheets, make sure CORS enabled for those domains.
