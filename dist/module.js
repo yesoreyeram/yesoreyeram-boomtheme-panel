@@ -159,7 +159,8 @@ System.register(["lodash", "app/plugins/sdk"], function (exports_1, context_1) {
                         };
                     });
                     lodash_1.default.defaults(_this.panel, {});
-                    _this.panel.transparent = true;
+                    // Jaime modified at DATE20200326, for panel transparent always true issue, LINE
+                    // _this.panel.transparent = true;
                     _this.panel.themes = _this.panel.themes || [
                         new BoomTheme({
                             name: CONFIG.FIRST_THEME_NAME,

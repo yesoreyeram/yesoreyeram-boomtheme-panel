@@ -162,7 +162,8 @@ class BoomThemeCtl extends PanelCtrl {
     constructor($scope, $injector) {
         super($scope, $injector);
         _.defaults(this.panel, {});
-        this.panel.transparent = true;
+	// Jaime modified at DATE20200326, for panel transparent always true issue, LINE
+        // this.panel.transparent = true;
         this.panel.themes = this.panel.themes || [
             new BoomTheme({
                 name: CONFIG.FIRST_THEME_NAME,
