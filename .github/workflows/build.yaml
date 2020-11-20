@@ -47,13 +47,15 @@ jobs:
     - name: Build
       run: |
         yarn build;
+    - name: last Updated file
+      run: |
+        echo $(date) > dist/LAST_UPDATED;
     - name: Sign plugin
       run: yarn sign
       env:
         GRAFANA_API_KEY: ${{ secrets.GRAFANA_API_KEY }}
     - name: Deploy
       run: |
-        echo $(date) > dist/LAST_UPDATED;
         git config --global user.email "actions@github.com";
         git config --global user.name "Github Actions";
         git add --force dist/
