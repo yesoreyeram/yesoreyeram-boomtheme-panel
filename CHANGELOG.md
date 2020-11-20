@@ -3,6 +3,7 @@
 | 0.2.0   | **Plugin Signed**                                          |
 |         | Tagged releases                                            |
 |         | Bug fixes                                                  |
+|         | Release notes added                                        |
 | 0.1.0   | **First version for release**                              |
 | 0.0.4   | Base theme option                                          |
 |         | Bug fixes (#4)                                             |
