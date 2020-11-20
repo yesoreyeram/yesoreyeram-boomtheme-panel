@@ -17,11 +17,11 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Setup Node
+    - name: NodeJS Setup
       uses: actions/setup-node@v1
       with:
         node-version: 12.x
-    - name: Install Dependencies
+    - name: Dependencies Install
       run: |
         yarn install --frozen-lockfile;
     - name: Test
@@ -31,7 +31,7 @@ jobs:
       run: |
         yarn build;
     - name: Sign plugin
-      run: npx @grafana/toolkit plugin:sign
+      run: yarn sign
       env:
         GRAFANA_API_KEY: ${{ secrets.GRAFANA_API_KEY }}
     - name: Deploy

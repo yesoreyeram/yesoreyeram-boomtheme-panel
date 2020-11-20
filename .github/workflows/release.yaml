@@ -1,4 +1,5 @@
 name: Release
+
 on:
   push:
     tags:
@@ -22,18 +23,15 @@ jobs:
         node-version: 12.x
     - name: Dependencies Install
       run: |
-        echo "Grafana Boom Table plugin - Install dependencies";
         yarn install --frozen-lockfile;
     - name: Test
       run: |
-        echo "Grafana Boom Table plugin - Test";
         yarn test;     
     - name: Build
       run: |
-        echo "Grafana Boom Table plugin - Build";
         yarn build;      
     - name: Sign plugin
-      run: npx @grafana/toolkit plugin:sign
+      run: yarn sign
       env:
         GRAFANA_API_KEY: ${{ secrets.GRAFANA_API_KEY }}
     - name: Get plugin information

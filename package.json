@@ -5,7 +5,8 @@
   "main": "dist/module.js",
   "scripts": {
     "build": "grunt",
-    "test": "grunt test"
+    "test": "grunt test",
+    "sign": "grafana-toolkit plugin:sign"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
   },
   "homepage": "https://github.com/yesoreyeram/yesoreyeram-boomtheme-panel#readme",
   "devDependencies": {
+    "@grafana/toolkit": "7.3.3",
     "@types/lodash": "^4.14.123",
     "@types/node": "^11.13.8",
     "grafana-sdk-mocks": "github:grafana/grafana-sdk-mocks",
