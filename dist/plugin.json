@@ -4,7 +4,7 @@
   "name": "Boom Theme",
   "id": "yesoreyeram-boomtheme-panel",
   "info": {
-    "version": "0.2.0-alpha.4",
+    "version": "0.2.0-alpha.",
     "updated": "%TODAY%",
     "description": "Themes for Grafana",
     "author": {

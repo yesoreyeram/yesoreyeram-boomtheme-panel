@@ -43,7 +43,9 @@ jobs:
         steps.cache-node-modules.outputs.cache-hit != 'true'
     - name: Test
       run: |
-        yarn test;      
+        yarn test;
+    - name: Cleanup
+      run: rm -rf dist/
     - name: Build
       run: |
         yarn build;
