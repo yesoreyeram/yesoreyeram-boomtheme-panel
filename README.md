@@ -2,9 +2,10 @@
 
 Theme switcher with custom styles / themes for grafana dashboards.
 
-![image](https://user-images.githubusercontent.com/153843/57070256-ba874200-6cce-11e9-85f5-e0a036eb306b.png)
+![image](https://user-images.githubusercontent.com/153843/99795058-0e60b280-2b23-11eb-88fb-fa673a6111ea.png)
 
-![image](https://user-images.githubusercontent.com/153843/57070201-99265600-6cce-11e9-9a9c-734121df7cb8.png)
+![image](https://user-images.githubusercontent.com/153843/99795201-45cf5f00-2b23-11eb-8da7-e6dcb4383c7f.png)
+
 
 # Features
 
@@ -14,7 +15,7 @@ Theme switcher with custom styles / themes for grafana dashboards.
 - External stylesheets support
 - Add inline styles to themes to override styles
 - Add many themes as possible without rebuilding / restarting grafana
-- Users with view only option can also pick their favourite theme
+- Users with view only option can also pick their favorite theme
 - Themes applicable to current dashboard only
 
 # Creating Theme
@@ -30,12 +31,11 @@ Themes can be created with multiple building blocks like background image, base 
 
 # Supported Grafana version
 
-This grafana plugin is tested with the grafna versions 6.x. But other versions are also expected to work.
+This grafana plugin is tested with the grafana versions 6.x. But other versions are also expected to work.
 
 # Work in progress
 
-* Time based automatic theme switch - Automatically switch dark themes during night hours.
-* Color palette based themes - Pick your own background/foregroud colors
+* Color palette based themes - Pick your own background/foreground colors
 * Font size adjuster - Viewers will be able to adjust their dashboard font sizes
 
 # Notes
@@ -49,6 +49,8 @@ This grafana plugin is tested with the grafna versions 6.x. But other versions a
   - Adjust the height and width if required.
 - This plugin is in very much WIP / dev stage. Expect breaking changes & bugs.
 
-# Known issues
+# Known issues / Limitations
 
 - If any custom plugin is used, dark/light theme switch, base theme will not work for those custom plugins. Refer [this](https://github.com/yesoreyeram/yesoreyeram-boomtheme-panel/issues/3) github issue
+
+- Theme panel should be within view port. Otherwise, Grafana won't render the theme. Refer [this](https://github.com/yesoreyeram/yesoreyeram-boomtheme-panel/issues/17)

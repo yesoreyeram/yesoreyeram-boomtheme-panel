@@ -12,7 +12,7 @@
                         </span>
                     </a>
                 </li>
-                <li ng-repeat="theme in ctrl.panel.themes track by $index" ng-click="ctrl.activeEditorTabIndex = $index;ctrl.setruntimeThemeIndex($index)">
+                <li ng-repeat="theme in ctrl.panel.themes track by $index" ng-click="ctrl.activeEditorTabIndex = $index;ctrl.setRunTimeThemeIndex($index)">
                     <a>
                         <span ng-if="ctrl.activeEditorTabIndex === $index" style="margin-right: 7px;color:orange;">
                             <span ng-if="ctrl.panel.activeThemeId === $index">

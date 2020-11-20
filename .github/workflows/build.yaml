@@ -1,0 +1,45 @@
+name: Build & Publish
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup Node
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - name: Install Dependencies
+      run: |
+        yarn install --frozen-lockfile;
+    - name: Test
+      run: |
+        yarn test;      
+    - name: Build
+      run: |
+        yarn build;
+    - name: Sign plugin
+      run: npx @grafana/toolkit plugin:sign
+      env:
+        GRAFANA_API_KEY: ${{ secrets.GRAFANA_API_KEY }}
+    - name: Deploy
+      run: |
+        echo $(date) > dist/LAST_UPDATED;
+        git config --global user.email "actions@github.com";
+        git config --global user.name "Github Actions";
+        git add --force dist/
+        git commit -m "Build by Github Actions"
+        git push
+        git status

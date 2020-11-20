@@ -23,6 +23,12 @@ module.exports = grunt => {
         expand: true,
         src: ["img/**/*"],
         dest: "dist/src/"
+      },
+      logo_to_dist: {
+        cwd: "src",
+        expand: true,
+        src: ["img/logo.png"],
+        dest: "dist/"
       }
     },
 
@@ -71,25 +77,18 @@ module.exports = grunt => {
         tsconfig: "./tsconfig.json"
       }
     },
-
-    run: {
-      options: {},
-      tests: {
-        exec: "npm run-script jest"
-      }
-    }
   });
 
-  grunt.registerTask("test", ["run:tests", "tslint"]);
+  grunt.registerTask("test", ["tslint"]);
 
   grunt.registerTask("default", [
     "clean",
-    "run:tests",
     "tslint",
     "ts:default",
     "sass:build",
     "copy:src_to_dist",
     "copy:pluginDef",
-    "copy:img_to_dist"
+    "copy:img_to_dist",
+    "copy:logo_to_dist"
   ]);
 };
