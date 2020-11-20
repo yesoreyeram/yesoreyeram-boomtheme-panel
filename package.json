@@ -1,6 +1,6 @@
 {
   "name": "yesoreyeram-boomtheme-panel",
-  "version": "0.2.0-alpha.2",
+  "version": "0.2.0-alpha.3",
   "description": "Themes for Grafana",
   "main": "dist/module.js",
   "scripts": {
