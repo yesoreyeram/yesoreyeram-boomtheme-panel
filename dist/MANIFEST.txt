@@ -8,15 +8,15 @@ Hash: SHA512
   "signedByOrg": "yesoreyeram",
   "signedByOrgName": "yesoreyeram",
   "plugin": "yesoreyeram-boomtheme-panel",
-  "version": "0.2.0-alpha.2",
-  "time": 1605876880517,
+  "version": "0.2.0-alpha.3",
+  "time": 1605877014740,
   "keyId": "7e4d0c6a708866e7",
   "files": {
     "module.js": "ec615775764d9ae16355f24618c0847583f5ad86b83426ea123ba9d686667d64",
     "img/logo.png": "c78ee5c51cf0d20feda82bc8d453ee71f2083d1b36cb3b7726d4072430c6f4b6",
     "BoomThemeStyle.js": "265c8038a53512fbd4fbdfb951c7693a26319badfea77632de5fd80a835abcc1",
     "BoomTheme.js": "2e3629140ed0686f9cef8091e377e48d30f95019182f113bdbc4df5d3c27fed8",
-    "plugin.json": "73ebb11dc6c03964945bafe737fcc7ef81b68e8dd109895db0b76413f53484ba",
+    "plugin.json": "7e1236cf526bb3f5f93a56d25dfe2916b9e4bbfa197c73a74363925935a0a00e",
     "src/img/logo.png": "c78ee5c51cf0d20feda82bc8d453ee71f2083d1b36cb3b7726d4072430c6f4b6",
     "README.md": "8f9b2dfb649ccd4fb8c1960dc298e5614ce0eb9b75b0bc581335d7b1f9cf541d",
     "BoomThemeCtl.js": "c7e912db91e9ac8c9d73025b9a8220b4f6f5184f50377be737a27d73da982f88",
@@ -31,9 +31,9 @@ Hash: SHA512
 Version: OpenPGP.js v4.10.1
 Comment: https://openpgpjs.org
 
-wqEEARMKAAYFAl+3vJAACgkQfk0ManCIZuekfgIHbU7E7zOz/gppEo7WEkXC
-SVax5rjFGlShggEpnQxBz+Z/5T7N9LzrYNS1l1cRYwulN6JCXro02Jnyt8Qm
-QRtgdEoCCQHoD37R6vQFyUU1OOitdbzuCPf/PKK7G2K9Zblgq2EDYPoASGCA
-syTUSgu24jEd1f2cr8mlbnMqzSnKbMEvjgU/pQ==
-=VsPN
+wqEEARMKAAYFAl+3vRYACgkQfk0ManCIZuctswIHXRM582WADQPJZfdNNjgB
+wcO94yen1laShDJWLm90Ls6UQA4Z7bIoMg0LuF2EtHefTnwkowpe7VtAJ1mY
+Ey4V7i8CCQGrjm/izBMmtgILM7BS6GJczq0CFHivo2vQCh7T2Pl+NtkXXM2F
+LUMfLuERLcjQBZSjpwGuGlqNBiszZf0TuPiSvw==
+=Dn8k
 -----END PGP SIGNATURE-----
