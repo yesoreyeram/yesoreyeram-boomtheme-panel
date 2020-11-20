@@ -1,6 +1,7 @@
 | Version | Changes                                                    |
 | --------|------------------------------------------------------------|
 | 0.2.0   | **Plugin Signed**                                          |
+|         | Tagged releases                                            |
 |         | Bug fixes                                                  |
 | 0.1.0   | **First version for release**                              |
 | 0.0.4   | Base theme option                                          |

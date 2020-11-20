@@ -9,7 +9,7 @@ Hash: SHA512
   "signedByOrgName": "yesoreyeram",
   "plugin": "yesoreyeram-boomtheme-panel",
   "version": "0.2.0-alpha.2",
-  "time": 1605876749969,
+  "time": 1605876880517,
   "keyId": "7e4d0c6a708866e7",
   "files": {
     "module.js": "ec615775764d9ae16355f24618c0847583f5ad86b83426ea123ba9d686667d64",
@@ -24,16 +24,16 @@ Hash: SHA512
     "config.js": "530d8c1aed3d5af34cd0bd04cba343a8e8a768bd66eb454961aabfa7f4302c90",
     "partials/options.html": "d59626a741a293c46170ea10ba5c6b5320dcd0aa4069def9df30412086ca41c7",
     "partials/module.html": "5e5b56b671f5734545927c54847ec58e24089a654c2480fa4060884123da9c30",
-    "CHANGELOG.md": "7c82c05d20acb661491c253087ed34a8f0550cd7efbaa4b92c2f2cba82ab6539"
+    "CHANGELOG.md": "c0586a971673d2116802d18cd5f13de01792ed4fe89a7c86df6283ef07d7177b"
   }
 }
 -----BEGIN PGP SIGNATURE-----
 Version: OpenPGP.js v4.10.1
 Comment: https://openpgpjs.org
 
-wqEEARMKAAYFAl+3vA4ACgkQfk0ManCIZufLVQII4tnBuCuK95YeM9lIr7dr
-IBnaRotNNtXy4e36kDT8IA6eLG5Gv61TE2qBSc/W2d0i5VoASTHfn+9DceE0
-xbGKvD4CCQE/FkB90j7bGIuta/GD8PEZUotcJncIcGqpeT3hdvhcBvEFUzDF
-Ooj3VhI//3DJBLCbI5CgiUxbpZ7EEVPoxY5oRA==
-=uIN2
+wqEEARMKAAYFAl+3vJAACgkQfk0ManCIZuekfgIHbU7E7zOz/gppEo7WEkXC
+SVax5rjFGlShggEpnQxBz+Z/5T7N9LzrYNS1l1cRYwulN6JCXro02Jnyt8Qm
+QRtgdEoCCQHoD37R6vQFyUU1OOitdbzuCPf/PKK7G2K9Zblgq2EDYPoASGCA
+syTUSgu24jEd1f2cr8mlbnMqzSnKbMEvjgU/pQ==
+=VsPN
 -----END PGP SIGNATURE-----
