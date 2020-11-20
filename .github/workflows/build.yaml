@@ -49,9 +49,6 @@ jobs:
     - name: Build
       run: |
         yarn build;
-    - name: last Updated file
-      run: |
-        echo $(date) > dist/LAST_UPDATED;
     - name: Sign plugin
       run: yarn sign
       env:
