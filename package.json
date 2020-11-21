@@ -1,12 +1,14 @@
 {
   "name": "yesoreyeram-boomtheme-panel",
-  "version": "0.2.0-alpha.5",
+  "version": "0.2.0-alpha.6",
   "description": "Themes for Grafana",
   "main": "dist/module.js",
   "scripts": {
-    "build": "grunt",
-    "test": "grunt test",
-    "sign": "grafana-toolkit plugin:sign"
+    "build": "grafana-toolkit plugin:build",
+    "test": "grafana-toolkit plugin:test",
+    "sign": "grafana-toolkit plugin:sign",
+    "dev": "grafana-toolkit plugin:dev",
+    "watch": "grafana-toolkit plugin:dev --watch"
   },
   "repository": {
     "type": "git",
@@ -26,22 +28,13 @@
   "homepage": "https://github.com/yesoreyeram/yesoreyeram-boomtheme-panel#readme",
   "devDependencies": {
     "@grafana/toolkit": "7.3.3",
-    "@types/lodash": "^4.14.123",
-    "@types/node": "^11.13.8",
-    "grafana-sdk-mocks": "github:grafana/grafana-sdk-mocks",
-    "grunt": "^1.0.4",
-    "grunt-contrib-clean": "^2.0.0",
-    "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-watch": "^1.1.0",
-    "grunt-sass": "^3.0.2",
-    "grunt-ts": "^6.0.0-beta.22",
-    "grunt-tslint": "^5.0.2",
-    "load-grunt-tasks": "^4.0.0",
-    "node-sass": "^4.12.0",
-    "tslint": "^5.16.0",
-    "typescript": "^3.4.5"
+    "@types/lodash": "^4.14.149"
   },
   "dependencies": {
-    "lodash": "^4.17.19"
+    "@grafana/data": "7.3.3",
+    "@grafana/runtime": "7.3.3",
+    "@grafana/ui": "7.3.3",
+    "lodash": "^4.17.20",
+    "react-style-tag": "^2.0.2"
   }
 }
