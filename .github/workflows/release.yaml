@@ -43,7 +43,7 @@ jobs:
         steps.cache-node-modules.outputs.cache-hit != 'true'
     - name: Test
       run: |
-        yarn test;     
+        yarn test;
     - name: Build
       run: |
         yarn build;      
