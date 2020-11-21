@@ -1,0 +1,37 @@
+{
+  "$schema": "https://raw.githubusercontent.com/grafana/grafana/master/docs/sources/developers/plugins/plugin.schema.json",
+  "type": "panel",
+  "name": "Boom Theme",
+  "id": "yesoreyeram-boomtheme-panel",
+  "skipDataQuery": true,
+  "info": {
+    "version": "0.2.0-alpha.6",
+    "updated": "2020-11-21",
+    "description": "Themes for Grafana",
+    "author": {
+      "name": "Sriramajeyam Sugumaran",
+      "url": "https://www.google.com/search?q=Sriramajeyam+Sugumaran"
+    },
+    "keywords": [
+      "grafana",
+      "plugin",
+      "panel",
+      "themes"
+    ],
+    "logos": {
+      "small": "img/logo.png",
+      "large": "img/logo.png"
+    },
+    "links": [
+      {
+        "name": "Github",
+        "url": "https://github.com/yesoreyeram/yesoreyeram-boomtheme-panel"
+      }
+    ]
+  },
+  "dependencies": {
+    "grafanaDependency": ">4.0.0",
+    "grafanaVersion": "4.x.x",
+    "plugins": []
+  }
+}
