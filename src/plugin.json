@@ -3,8 +3,9 @@
   "type": "panel",
   "name": "Boom Theme",
   "id": "yesoreyeram-boomtheme-panel",
+  "skipDataQuery": true,
   "info": {
-    "version": "0.2.0-alpha.5",
+    "version": "%VERSION%",
     "updated": "%TODAY%",
     "description": "Themes for Grafana",
     "author": {
