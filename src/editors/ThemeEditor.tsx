@@ -141,7 +141,7 @@ export const ThemeEditor: React.FC<EditorProps> = ({ value, onChange }) => {
             case 'url':
               return (
                 <>
-                  <Label>Panel COntainer BG Color</Label>
+                  <Label>Panel Container BG Color</Label>
                   <Input
                     css={{}}
                     value={style.props.url}
@@ -159,30 +159,38 @@ export const ThemeEditor: React.FC<EditorProps> = ({ value, onChange }) => {
         })}
         <div className="text-center">
           <br />
-          <>
-            <button className="btn btn-success" onClick={() => addStyle('url')}>
-              Add external CSS
-            </button>
-            &nbsp;&nbsp;
-          </>
-          <>
-            <button className="btn btn-success" onClick={() => addStyle('style')}>
-              Add custom CSS
-            </button>
-            &nbsp;&nbsp;
-          </>
-          <>
-            <button className="btn btn-success" onClick={() => addStyle('bgimage')}>
-              Add BG Image
-            </button>
-            &nbsp;&nbsp;
-          </>
-          <>
-            <button className="btn btn-success" onClick={() => addStyle('panel-container-bg-color')}>
-              Add Panel BG Color
-            </button>
-            &nbsp;&nbsp;
-          </>
+          {value.styles.filter(s => s.type === 'url').length < 1 && (
+            <>
+              <button className="btn btn-success" onClick={() => addStyle('url')}>
+                Add external CSS
+              </button>
+              &nbsp;&nbsp;
+            </>
+          )}
+          {value.styles.filter(s => s.type === 'style').length < 1 && (
+            <>
+              <button className="btn btn-success" onClick={() => addStyle('style')}>
+                Add custom CSS
+              </button>
+              &nbsp;&nbsp;
+            </>
+          )}
+          {value.styles.filter(s => s.type === 'bgimage').length < 1 && (
+            <>
+              <button className="btn btn-success" onClick={() => addStyle('bgimage')}>
+                Add BG Image
+              </button>
+              &nbsp;&nbsp;
+            </>
+          )}
+          {value.styles.filter(s => s.type === 'panel-container-bg-color').length < 1 && (
+            <>
+              <button className="btn btn-success" onClick={() => addStyle('panel-container-bg-color')}>
+                Add Panel BG Color
+              </button>
+              &nbsp;&nbsp;
+            </>
+          )}
           <br />
           <br />
           <button className="btn btn-success" onClick={() => setEditorVisibility(false)}>
