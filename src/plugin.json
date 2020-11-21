@@ -5,8 +5,18 @@
   "id": "yesoreyeram-boomtheme-panel",
   "skipDataQuery": true,
   "info": {
+<<<<<<< HEAD
+<<<<<<<< HEAD:src/plugin.json
     "version": "%VERSION%",
     "updated": "%TODAY%",
+========
+    "version": "0.2.0-alpha.6",
+    "updated": "2020-11-21",
+>>>>>>>> origin:dist/plugin.json
+=======
+    "version": "%VERSION%",
+    "updated": "%TODAY%",
+>>>>>>> origin
     "description": "Themes for Grafana",
     "author": {
       "name": "Sriramajeyam Sugumaran",
