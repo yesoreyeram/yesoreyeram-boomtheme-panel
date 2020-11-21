@@ -49,7 +49,7 @@ const Editor: React.FC<EditorProps> = ({ value, onChange }) => {
       <br />
       <div className="text-center">
         <button className="btn btn-primary" onClick={addTheme}>
-          Add New Pattern
+          Add New Theme
         </button>
       </div>
     </>
