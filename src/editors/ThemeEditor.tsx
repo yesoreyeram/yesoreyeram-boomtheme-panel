@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { SelectableValue } from '@grafana/data';
 import { Modal, Label, Input, TextArea, RadioButtonGroup, ColorPicker } from '@grafana/ui';
 import { BoomTheme } from '../BoomTheme';
-import { BoomThemeStyle } from 'BoomThemeStyle';
+import { BoomThemeStyle, BoomThemeStyleProps } from 'BoomThemeStyle';
 
 interface EditorProps {
   value: BoomTheme;
@@ -12,11 +12,10 @@ interface EditorProps {
 export const ThemeEditor: React.FC<EditorProps> = ({ value, onChange }) => {
   const [editorVisibility, setEditorVisibility] = useState(false);
 
-  const addStyle = (styleType: 'bgimage' | 'style' | 'url' | 'panel-container-bg-color') => {
+  const addStyle = (styleType: BoomThemeStyleProps) => {
     let theme = value;
     theme.styles = theme.styles || [];
     theme.styles.push(new BoomThemeStyle(styleType, null));
-    console.log(theme.styles);
     onChange(theme);
   };
 
@@ -27,11 +26,9 @@ export const ThemeEditor: React.FC<EditorProps> = ({ value, onChange }) => {
   };
 
   const onStylePropertyChange = (index: number, propertyName: string, replaceValue: unknown) => {
-    console.log('here');
     let theme = value;
     theme.styles[index].props = theme.styles[index].props || {};
     theme.styles[index].props[propertyName] = replaceValue;
-    console.log(theme);
     onChange(theme);
   };
   const defaultThemes: SelectableValue[] = [
@@ -53,7 +50,7 @@ export const ThemeEditor: React.FC<EditorProps> = ({ value, onChange }) => {
         <br />
         {value.styles.map((style, index: number) => {
           switch (style.type) {
-            case 'basetheme':
+            case BoomThemeStyleProps.BaseTheme:
               const baseTheme: SelectableValue = defaultThemes.find(t => t.value === style.props.theme) || {
                 label: 'Default',
                 value: 'default',
@@ -71,7 +68,7 @@ export const ThemeEditor: React.FC<EditorProps> = ({ value, onChange }) => {
                   <br />
                 </>
               );
-            case 'bgimage':
+            case BoomThemeStyleProps.BackgroundImage:
               return (
                 <>
                   <Label>Background Image</Label>
@@ -85,7 +82,7 @@ export const ThemeEditor: React.FC<EditorProps> = ({ value, onChange }) => {
                   <br />
                 </>
               );
-            case 'url':
+            case BoomThemeStyleProps.ExternalURL:
               return (
                 <>
                   <Label>External CSS URL</Label>
@@ -99,7 +96,7 @@ export const ThemeEditor: React.FC<EditorProps> = ({ value, onChange }) => {
                   <br />
                 </>
               );
-            case 'style':
+            case BoomThemeStyleProps.CustomStyle:
               return (
                 <>
                   <Label>Additional CSS Style</Label>
@@ -114,7 +111,7 @@ export const ThemeEditor: React.FC<EditorProps> = ({ value, onChange }) => {
                   <br />
                 </>
               );
-            case 'panel-container-bg-color':
+            case BoomThemeStyleProps.PanelBackground:
               return (
                 <>
                   <Label>Panel BG Color</Label>
@@ -159,33 +156,33 @@ export const ThemeEditor: React.FC<EditorProps> = ({ value, onChange }) => {
         })}
         <div className="text-center">
           <br />
-          {value.styles.filter(s => s.type === 'url').length < 1 && (
+          {value.styles.filter(s => s.type === BoomThemeStyleProps.ExternalURL).length < 1 && (
             <>
-              <button className="btn btn-success" onClick={() => addStyle('url')}>
+              <button className="btn btn-success" onClick={() => addStyle(BoomThemeStyleProps.ExternalURL)}>
                 Add external CSS
               </button>
               &nbsp;&nbsp;
             </>
           )}
-          {value.styles.filter(s => s.type === 'style').length < 1 && (
+          {value.styles.filter(s => s.type === BoomThemeStyleProps.CustomStyle).length < 1 && (
             <>
-              <button className="btn btn-success" onClick={() => addStyle('style')}>
+              <button className="btn btn-success" onClick={() => addStyle(BoomThemeStyleProps.CustomStyle)}>
                 Add custom CSS
               </button>
               &nbsp;&nbsp;
             </>
           )}
-          {value.styles.filter(s => s.type === 'bgimage').length < 1 && (
+          {value.styles.filter(s => s.type === BoomThemeStyleProps.BackgroundImage).length < 1 && (
             <>
-              <button className="btn btn-success" onClick={() => addStyle('bgimage')}>
+              <button className="btn btn-success" onClick={() => addStyle(BoomThemeStyleProps.BackgroundImage)}>
                 Add BG Image
               </button>
               &nbsp;&nbsp;
             </>
           )}
-          {value.styles.filter(s => s.type === 'panel-container-bg-color').length < 1 && (
+          {value.styles.filter(s => s.type === BoomThemeStyleProps.PanelBackground).length < 1 && (
             <>
-              <button className="btn btn-success" onClick={() => addStyle('panel-container-bg-color')}>
+              <button className="btn btn-success" onClick={() => addStyle(BoomThemeStyleProps.PanelBackground)}>
                 Add Panel BG Color
               </button>
               &nbsp;&nbsp;

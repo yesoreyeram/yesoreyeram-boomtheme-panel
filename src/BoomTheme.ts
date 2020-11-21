@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { BoomThemeStyle } from './BoomThemeStyle';
+import { BoomThemeStyle, BoomThemeStyleProps } from './BoomThemeStyle';
 import { getThemeCSSFile } from './utils';
 import { CONFIG } from './config';
 
@@ -16,14 +16,14 @@ export class BoomTheme {
     this.styles =
       options.styles.length === 0
         ? [
-            new BoomThemeStyle(CONFIG.THEME_STYLES.BASE_THEME, { theme: CONFIG.BASE_THEMES.DEFAULT.id }),
-            new BoomThemeStyle(CONFIG.THEME_STYLES.BG_IMAGE, { url: '' }),
-            new BoomThemeStyle(CONFIG.THEME_STYLES.URL, { url: '' }),
-            new BoomThemeStyle(CONFIG.THEME_STYLES.STYLE, { text: `` }),
+            new BoomThemeStyle(BoomThemeStyleProps.BaseTheme, { theme: CONFIG.BASE_THEMES.DEFAULT.id }),
+            new BoomThemeStyle(BoomThemeStyleProps.BackgroundImage, { url: '' }),
+            new BoomThemeStyle(BoomThemeStyleProps.ExternalURL, { url: '' }),
+            new BoomThemeStyle(BoomThemeStyleProps.CustomStyle, { text: `` }),
           ]
         : options.styles;
   }
-  addStyle(type: string): void {
+  addStyle(type: BoomThemeStyleProps): void {
     this.styles.push(new BoomThemeStyle(type, {}));
   }
   deleteStyle(index: number): void {

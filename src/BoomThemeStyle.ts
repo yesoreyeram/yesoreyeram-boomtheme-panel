@@ -1,35 +1,43 @@
 import { CONFIG } from './config';
+export enum BoomThemeStyleProps {
+  BaseTheme = 'theme',
+  BackgroundImage = 'bgimage',
+  CustomStyle = 'style',
+  ExternalURL = 'url',
+  PanelBackground = 'panel-container-bg-color',
+  None = 'none',
+}
 interface BoomThemeStyleInterface {
-  type: 'basetheme' | 'bgimage' | 'style' | 'url' | 'panel-container-bg-color' | 'none';
+  type: BoomThemeStyleProps;
 }
 interface BoomThemeStyleBaseThemeInterface extends BoomThemeStyleInterface {
-  type: 'basetheme';
+  type: BoomThemeStyleProps.BaseTheme;
   props: {
     theme: 'default' | 'dark' | 'light';
   };
 }
 interface BoomThemeStyleBgImageInterface extends BoomThemeStyleInterface {
-  type: 'bgimage';
+  type: BoomThemeStyleProps.BackgroundImage;
   props: {
     url: string;
   };
 }
 interface BoomThemeStyleStyleInterface extends BoomThemeStyleInterface {
-  type: 'style';
+  type: BoomThemeStyleProps.CustomStyle;
   props: {
     text: string;
   };
 }
 interface BoomThemeStyleURLInterface extends BoomThemeStyleInterface {
-  type: 'url';
+  type: BoomThemeStyleProps.ExternalURL;
   props: {
     url: string;
   };
 }
 interface BoomThemePanelContainerBGColorInterface extends BoomThemeStyleInterface {
-  type: 'panel-container-bg-color';
+  type: BoomThemeStyleProps.PanelBackground;
   props: {
-    url: string;
+    color: string;
   };
 }
 export type BoomThemeStyleType =
@@ -40,42 +48,37 @@ export type BoomThemeStyleType =
   | BoomThemePanelContainerBGColorInterface;
 
 export class BoomThemeStyle implements BoomThemeStyleInterface {
-  type: 'basetheme' | 'bgimage' | 'style' | 'url' | 'panel-container-bg-color' | 'none';
+  type: BoomThemeStyleProps;
   props: any;
-  constructor(type: string, props: any) {
+  constructor(type: BoomThemeStyleProps, props: any) {
+    this.type = type;
     switch (type.toLowerCase()) {
-      case CONFIG.THEME_STYLES.BASE_THEME:
-        this.type = 'basetheme';
+      case BoomThemeStyleProps.BaseTheme:
         this.props = {
           theme: props && props.theme ? props.theme : '',
         };
         break;
-      case CONFIG.THEME_STYLES.STYLE:
-        this.type = 'style';
+      case BoomThemeStyleProps.CustomStyle:
         this.props = {
           text: props && props.text ? props.text : '',
         };
         break;
-      case CONFIG.THEME_STYLES.URL:
-        this.type = 'url';
+      case BoomThemeStyleProps.ExternalURL:
         this.props = {
           url: props && props.url ? props.url : '',
         };
         break;
-      case CONFIG.THEME_STYLES.BG_IMAGE:
-        this.type = 'bgimage';
+      case BoomThemeStyleProps.BackgroundImage:
         this.props = {
           url: props && props.url ? props.url : '',
         };
         break;
       case CONFIG.THEME_STYLES.PANEL_CONTAINER_BG_COLOR:
-        this.type = 'panel-container-bg-color';
         this.props = {
           color: props && props.color ? props.color : '',
         };
         break;
       default:
-        this.type = 'none';
         this.props = {};
         break;
     }
