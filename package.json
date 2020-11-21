@@ -31,10 +31,10 @@
     "@types/lodash": "^4.14.149"
   },
   "dependencies": {
-    "@grafana/data": "7.1.5",
-    "@grafana/runtime": "7.1.5",
+    "@grafana/data": "7.3.3",
+    "@grafana/runtime": "7.3.3",
     "@grafana/ui": "7.3.3",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.20",
     "react-style-tag": "^2.0.2"
   }
 }

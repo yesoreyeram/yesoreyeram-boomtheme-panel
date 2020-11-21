@@ -1,5 +1,5 @@
 import { CONFIG } from './config';
-Anterface BoomThemeStyleInterface {
+interface BoomThemeStyleInterface {
   type: 'basetheme' | 'bgimage' | 'style' | 'url' | 'panel-container-bg-color' | 'none';
 }
 interface BoomThemeStyleBaseThemeInterface extends BoomThemeStyleInterface {
