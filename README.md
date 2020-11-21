@@ -1,18 +1,11 @@
 # Boom Theme Panel
 
-<<<<<<< HEAD
 [![Build & Publish](https://github.com/yesoreyeram/yesoreyeram-boomtheme-panel/workflows/Build%20&%20Publish/badge.svg)](https://github.com/yesoreyeram/yesoreyeram-boomtheme-panel/actions?query=workflow%3A%22Build+%26+Publish%22)
 [![Release](https://github.com/yesoreyeram/yesoreyeram-boomtheme-panel/workflows/Release/badge.svg)](https://github.com/yesoreyeram/yesoreyeram-boomtheme-panel/actions?query=workflow%3ARelease)
 
 Theme switcher with custom styles / themes for grafana dashboards.
 
 ![image](https://user-images.githubusercontent.com/153843/99880461-5e1aa900-2c0b-11eb-9c28-3c80381f2504.png)
-=======
-Theme switcher with custom styles / themes for grafana dashboards.
-
-![image](https://user-images.githubusercontent.com/153843/99880461-5e1aa900-2c0b-11eb-9c28-3c80381f2504.png)
-![image](https://user-images.githubusercontent.com/153843/99880482-80142b80-2c0b-11eb-938c-d28c7b59058a.png)
->>>>>>> origin
 ![image](https://user-images.githubusercontent.com/153843/99880502-a20dae00-2c0b-11eb-8355-c7c87bcb2f5c.png)
 
 # Features
