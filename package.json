@@ -31,8 +31,8 @@
     "@types/lodash": "^4.14.149"
   },
   "dependencies": {
-    "@grafana/data": "7.3.3",
-    "@grafana/runtime": "7.3.3",
+    "@grafana/data": "8.2.3",
+    "@grafana/runtime": "8.2.3",
     "@grafana/ui": "7.3.3",
     "lodash": "^4.17.20",
     "react-style-tag": "^2.0.2"
