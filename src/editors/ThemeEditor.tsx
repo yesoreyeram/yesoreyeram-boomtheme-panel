@@ -34,7 +34,7 @@ export const ThemeEditor: React.FC<EditorProps> = ({ value, onChange }) => {
   const defaultThemes: SelectableValue[] = [
     { value: 'default', label: 'Default' },
     { value: 'dark', label: 'Dark' },
-    { value: 'light', label: 'light' },
+    { value: 'light', label: 'Light' },
   ];
   return (
     <>
