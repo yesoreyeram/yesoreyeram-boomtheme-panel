@@ -30,7 +30,7 @@ const Editor: React.FC<EditorProps> = ({ value, onChange }) => {
   };
   return (
     <>
-      {value.map((theme, index) => (
+      {value?.map((theme, index) => (
         <div>
           <br />
           <ThemeEditor
