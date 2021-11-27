@@ -30,7 +30,7 @@ export const Panel: React.FC<Props> = ({ options, onOptionsChange }) => {
 
   let output = '';
 
-  options.themes.forEach((themeOptions: BoomTheme, index) => {
+  options.themes?.forEach((themeOptions: BoomTheme, index) => {
     const theme = new BoomTheme(themeOptions);
     if (runTimeThemeState) {
       if (runTimeTheme === theme.name) {
