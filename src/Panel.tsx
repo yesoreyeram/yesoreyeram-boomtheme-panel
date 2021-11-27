@@ -19,7 +19,7 @@ interface Props extends PanelProps<PanelOptions> {
   onOptionsChange: (options: PanelOptions) => void;
 }
 
-export const Panel: React.FC<Props> = ({ options, onOptionsChange }) => {
+export const Panel: React.FC<Props> = ({ options, onOptionsChange, replaceVariables }) => {
   const [runTimeThemeState, setRunTimeThemeState] = useState(false);
   const [runTimeTheme, setRunTimeTheme] = useState('');
 
@@ -43,13 +43,13 @@ export const Panel: React.FC<Props> = ({ options, onOptionsChange }) => {
             `;
       }
     } else {
-      if (options.activeTheme === 'Grafana Dark') {
+      if (replaceVariables(options.activeTheme) === 'Grafana Dark') {
         output = `@import url('${getThemeCSSFile('dark')}');
             `;
-      } else if (options.activeTheme === 'Grafana Light') {
+      } else if (replaceVariables(options.activeTheme) === 'Grafana Light') {
         output = `@import url('${getThemeCSSFile('light')}');
             `;
-      } else if (options.activeTheme === theme.name) {
+      } else if (replaceVariables(options.activeTheme) === theme.name) {
         output += theme.getThemeContent();
       }
     }
