@@ -30,7 +30,7 @@ const Editor = ({ value, onChange }: EditorProps) => {
   };
   return (
     <>
-      {value.map((theme, index) => (
+      {value?.map((theme, index) => (
         <div key={index}>
           <br />
           <ThemeEditor

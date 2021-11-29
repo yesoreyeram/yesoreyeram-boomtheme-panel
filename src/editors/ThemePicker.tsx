@@ -15,7 +15,7 @@ export const ThemePicker = (props: ThemePickerProps) => {
     <div style={style}>
       <br />
       {props.themes
-        .map((theme) => theme.name)
+        ?.map(theme => theme.name)
         .concat(['Grafana Dark', 'Grafana Light'])
         .map((themeName, index: number) => {
           return (
