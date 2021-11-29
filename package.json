@@ -27,14 +27,13 @@
   },
   "homepage": "https://github.com/yesoreyeram/yesoreyeram-boomtheme-panel#readme",
   "devDependencies": {
-    "@grafana/toolkit": "7.3.3",
-    "@types/lodash": "^4.14.149"
+    "@grafana/toolkit": "7.5.1"
   },
   "dependencies": {
-    "@grafana/data": "7.3.3",
-    "@grafana/runtime": "7.3.3",
-    "@grafana/ui": "7.3.3",
-    "lodash": "^4.17.20",
-    "react-style-tag": "^2.0.2"
+    "@grafana/data": "7.5.1",
+    "@grafana/runtime": "7.5.1",
+    "@grafana/ui": "7.5.1",
+    "lodash": "^4.17.21",
+    "react-style-tag": "^2.0.4"
   }
 }

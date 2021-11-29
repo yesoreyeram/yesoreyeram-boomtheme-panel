@@ -31,7 +31,7 @@ export class BoomTheme {
   }
   private constructTheme(styles: any[]): string {
     let output = ``;
-    _.each(styles, style => {
+    _.each(styles, (style) => {
       if (style.type === CONFIG.THEME_STYLES.URL) {
         if (style.props && style.props.url !== '') {
           output += `@import url('${style.props.url}');
@@ -79,10 +79,12 @@ export class BoomTheme {
   getThemeContent(): string {
     let output = '';
     if (this.styles && this.styles.length > 0) {
-      output += this.constructTheme(this.styles.filter(style => style.type === CONFIG.THEME_STYLES.URL));
-      output += this.constructTheme(this.styles.filter(style => style.type === CONFIG.THEME_STYLES.STYLE));
+      output += this.constructTheme(this.styles.filter((style) => style.type === CONFIG.THEME_STYLES.URL));
+      output += this.constructTheme(this.styles.filter((style) => style.type === CONFIG.THEME_STYLES.STYLE));
       output += this.constructTheme(
-        this.styles.filter(style => style.type !== CONFIG.THEME_STYLES.URL && style.type !== CONFIG.THEME_STYLES.STYLE)
+        this.styles.filter(
+          (style) => style.type !== CONFIG.THEME_STYLES.URL && style.type !== CONFIG.THEME_STYLES.STYLE
+        )
       );
     }
     return output;
