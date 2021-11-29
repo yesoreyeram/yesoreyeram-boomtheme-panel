@@ -54,7 +54,7 @@ export class BoomTheme {
       } else if (style.type === CONFIG.THEME_STYLES.BG_IMAGE) {
         if (style.props && style.props.url !== '') {
           output += `
-.main-view, .sidemenu, .sidemenu-open .sidemenu, .navbar, .dashboard-container,.dashboard-container > div {
+.main-view, .sidemenu, .sidemenu-open .sidemenu, .navbar, .dashboard-container,.dashboard-container > div, .page-toolbar  {
     background: url("${style.props.url}") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -66,7 +66,7 @@ export class BoomTheme {
       } else if (style.type === CONFIG.THEME_STYLES.PANEL_CONTAINER_BG_COLOR) {
         if (style.props && style.props.color !== '') {
           output += `
-.panel-container {
+.panel-container, .page-toolbar {
     background-color: ${style.props.color}
 }
 `;
