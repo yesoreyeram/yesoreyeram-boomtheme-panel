@@ -1,6 +1,6 @@
 import { CONFIG } from './config';
 export enum BoomThemeStyleProps {
-  BaseTheme = 'theme',
+  BaseTheme = 'basetheme',
   BackgroundImage = 'bgimage',
   CustomStyle = 'style',
   ExternalURL = 'url',
