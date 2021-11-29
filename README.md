@@ -8,7 +8,7 @@ Theme switcher with custom styles / themes for grafana dashboards.
 ![image](https://user-images.githubusercontent.com/153843/99880461-5e1aa900-2c0b-11eb-9c28-3c80381f2504.png)
 ![image](https://user-images.githubusercontent.com/153843/99880502-a20dae00-2c0b-11eb-8355-c7c87bcb2f5c.png)
 
-# Features
+## Features
 
 - Theme switcher
 - Multiple themes per dashboard
@@ -19,7 +19,7 @@ Theme switcher with custom styles / themes for grafana dashboards.
 - Users can change the themes without editing the dashboard
 - Dashboard specific themes
 
-# Creating Theme
+## Creating Theme
 
 Themes can be created with multiple building blocks like background image, base theme etc.
 
@@ -31,14 +31,15 @@ Themes can be created with multiple building blocks like background image, base 
 | Custom Style / CSS Override | CSS Styles. Should be valid css                                                                          |
 | Panel container BG          | Background color for the panels                                                                          |
 
-# Supported Grafana version
+## Supported Grafana version
 
 This grafana plugin is tested with the following grafana versions, But other versions are also expected to work.
 
-* Grafana version 7.x
-* Grafana version 6.x
+- Grafana version 8.x
+- Grafana version 7.x
+- Grafana version 6.x
 
-# Notes
+## Notes
 
 - When adding external stylesheets, make sure CORS enabled for those domains.
 
@@ -49,7 +50,7 @@ This grafana plugin is tested with the following grafana versions, But other ver
   - Move this panel to the bottom of the dashboard
   - Adjust the height and width if required.
 
-# Known issues / Limitations
+## Known issues / Limitations
 
 - If any custom plugin is used, dark/light theme switch, base theme will not work for those custom plugins. Refer [this](https://github.com/yesoreyeram/yesoreyeram-boomtheme-panel/issues/3) github issue
 

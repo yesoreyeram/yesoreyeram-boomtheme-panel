@@ -19,7 +19,7 @@ interface Props extends PanelProps<PanelOptions> {
   onOptionsChange: (options: PanelOptions) => void;
 }
 
-export const Panel: React.FC<Props> = ({ options, onOptionsChange }) => {
+export const Panel = ({ options }: Props) => {
   const [runTimeThemeState, setRunTimeThemeState] = useState(false);
   const [runTimeTheme, setRunTimeTheme] = useState('');
 

@@ -4,7 +4,7 @@ import { ThemesEditorOptions } from './editors/ThemesEditor';
 import { getActiveThemeName } from './utils';
 
 export const plugin = new PanelPlugin<PanelOptions>(Panel)
-  .setPanelOptions(builder => {
+  .setPanelOptions((builder) => {
     builder.addCustomEditor(ThemesEditorOptions);
     builder.addBooleanSwitch({
       name: 'Hide Theme Picker',
