@@ -1,5 +1,5 @@
 import React from 'react';
-import { BoomTheme } from 'BoomTheme';
+import { BoomTheme } from './../BoomTheme';
 
 interface ThemePickerProps {
   themes: BoomTheme[];
@@ -10,13 +10,13 @@ export const ThemePicker = (props: ThemePickerProps) => {
   const onViewChange = (themeName: string) => {
     props.onChange(themeName);
   };
-  const style: React.CSSProperties = { textAlign: 'center' };
+  const defaultThemes = ['Grafana Dark', 'Grafana Light'];
   return (
-    <div style={style}>
+    <div style={{ textAlign: 'center' }}>
       <br />
-      {props.themes
-        ?.map(theme => theme.name)
-        .concat(['Grafana Dark', 'Grafana Light'])
+      {(props.themes || [])
+        .map((theme) => theme.name)
+        .concat(defaultThemes)
         .map((themeName, index: number) => {
           return (
             <span

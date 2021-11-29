@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import { BoomThemeStyle, BoomThemeStyleProps } from './BoomThemeStyle';
 import { getThemeCSSFile } from './utils';
 import { CONFIG } from './config';
@@ -29,9 +28,9 @@ export class BoomTheme {
   deleteStyle(index: number): void {
     this.styles.splice(index, 1);
   }
-  private constructTheme(styles: any[]): string {
+  private constructTheme(styles: any[] = []): string {
     let output = ``;
-    _.each(styles, (style) => {
+    styles.forEach((style) => {
       if (style.type === CONFIG.THEME_STYLES.URL) {
         if (style.props && style.props.url !== '') {
           output += `@import url('${style.props.url}');

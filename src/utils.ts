@@ -1,4 +1,4 @@
-import { BoomTheme } from 'BoomTheme';
+import { BoomTheme } from './BoomTheme';
 
 export const getThemeCSSFile = function (mode: 'dark' | 'light'): string {
   let fileName = '';

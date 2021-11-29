@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { SelectableValue } from '@grafana/data';
 import { Modal, Label, Input, TextArea, RadioButtonGroup, ColorPicker } from '@grafana/ui';
 import { BoomTheme } from '../BoomTheme';
-import { BoomThemeStyle, BoomThemeStyleProps } from 'BoomThemeStyle';
+import { BoomThemeStyle, BoomThemeStyleProps } from './../BoomThemeStyle';
 
 interface EditorProps {
   value: BoomTheme;
@@ -61,9 +61,7 @@ export const ThemeEditor = ({ value, onChange }: EditorProps) => {
                   <RadioButtonGroup
                     value={baseTheme.value}
                     options={defaultThemes}
-                    onChange={(e) => {
-                      onStylePropertyChange(index, 'theme', e);
-                    }}
+                    onChange={(e) => onStylePropertyChange(index, 'theme', e)}
                   ></RadioButtonGroup>
                   <br />
                 </>
@@ -75,9 +73,7 @@ export const ThemeEditor = ({ value, onChange }: EditorProps) => {
                   <Input
                     css={{}}
                     value={style.props.url}
-                    onChange={(e) => {
-                      onStylePropertyChange(index, 'url', e.currentTarget.value);
-                    }}
+                    onChange={(e) => onStylePropertyChange(index, 'url', e.currentTarget.value)}
                   ></Input>
                   <br />
                 </>
@@ -89,9 +85,7 @@ export const ThemeEditor = ({ value, onChange }: EditorProps) => {
                   <Input
                     css={{}}
                     value={style.props.url}
-                    onChange={(e) => {
-                      onStylePropertyChange(index, 'url', e.currentTarget.value);
-                    }}
+                    onChange={(e) => onStylePropertyChange(index, 'url', e.currentTarget.value)}
                   ></Input>
                   <br />
                 </>
@@ -101,12 +95,9 @@ export const ThemeEditor = ({ value, onChange }: EditorProps) => {
                 <>
                   <Label>Additional CSS Style</Label>
                   <TextArea
-                    css={{}}
                     value={style.props.text}
                     rows={6}
-                    onChange={(e) => {
-                      onStylePropertyChange(index, 'text', e.currentTarget.value);
-                    }}
+                    onChange={(e) => onStylePropertyChange(index, 'text', e.currentTarget.value)}
                   ></TextArea>
                   <br />
                 </>
@@ -116,18 +107,13 @@ export const ThemeEditor = ({ value, onChange }: EditorProps) => {
                 <>
                   <Label>Panel BG Color</Label>
                   <Input
-                    css={{}}
                     value={style.props.color}
-                    onChange={(e) => {
-                      onStylePropertyChange(index, 'color', e.currentTarget.value);
-                    }}
+                    onChange={(e) => onStylePropertyChange(index, 'color', e.currentTarget.value)}
                     prefix={
                       <div>
                         <ColorPicker
                           color={style.props.color}
-                          onChange={(e) => {
-                            onStylePropertyChange(index, 'color', e);
-                          }}
+                          onChange={(e) => onStylePropertyChange(index, 'color', e)}
                         />
                       </div>
                     }
@@ -142,9 +128,7 @@ export const ThemeEditor = ({ value, onChange }: EditorProps) => {
                   <Input
                     css={{}}
                     value={style.props.url}
-                    onChange={(e) => {
-                      onStylePropertyChange(index, 'url', e.currentTarget.value);
-                    }}
+                    onChange={(e) => onStylePropertyChange(index, 'url', e.currentTarget.value)}
                   ></Input>
                   <br />
                 </>
