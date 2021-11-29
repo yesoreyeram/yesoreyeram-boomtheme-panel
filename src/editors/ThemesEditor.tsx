@@ -8,7 +8,7 @@ interface EditorProps {
   onChange: (value: BoomTheme[]) => void;
 }
 
-const Editor: React.FC<EditorProps> = ({ value, onChange }) => {
+const Editor = ({ value, onChange }: EditorProps) => {
   const addTheme = () => {
     let themes: BoomTheme[] = value || [];
     let newTheme: BoomTheme = new BoomTheme({
@@ -31,11 +31,11 @@ const Editor: React.FC<EditorProps> = ({ value, onChange }) => {
   return (
     <>
       {value?.map((theme, index) => (
-        <div>
+        <div key={index}>
           <br />
           <ThemeEditor
             value={theme}
-            onChange={updatedTheme => {
+            onChange={(updatedTheme) => {
               onThemeChange(updatedTheme, index);
             }}
           />
@@ -61,7 +61,5 @@ export const ThemesEditorOptions: PanelOptionsEditorItem = {
   name: 'Themes',
   path: 'themes',
   category: ['Themes'],
-  editor: ({ value, onChange }) => {
-    return <Editor value={value} onChange={onChange}></Editor>;
-  },
+  editor: Editor,
 };

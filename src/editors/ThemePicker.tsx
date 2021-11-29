@@ -6,7 +6,7 @@ interface ThemePickerProps {
   onChange: (activeTheme: string) => void;
 }
 
-export const ThemePicker: React.FC<ThemePickerProps> = (props: ThemePickerProps) => {
+export const ThemePicker = (props: ThemePickerProps) => {
   const onViewChange = (themeName: string) => {
     props.onChange(themeName);
   };
@@ -23,6 +23,7 @@ export const ThemePicker: React.FC<ThemePickerProps> = (props: ThemePickerProps)
               className="btn btn-secondary"
               style={{ marginLeft: index === 0 ? '0' : '10px', marginRight: '10px' }}
               onClick={() => onViewChange(themeName)}
+              key={index}
             >
               {themeName}
             </span>

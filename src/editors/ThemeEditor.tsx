@@ -9,7 +9,7 @@ interface EditorProps {
   onChange: (value: BoomTheme) => void;
 }
 
-export const ThemeEditor: React.FC<EditorProps> = ({ value, onChange }) => {
+export const ThemeEditor = ({ value, onChange }: EditorProps) => {
   const [editorVisibility, setEditorVisibility] = useState(false);
 
   const addStyle = (styleType: BoomThemeStyleProps) => {
@@ -46,12 +46,12 @@ export const ThemeEditor: React.FC<EditorProps> = ({ value, onChange }) => {
 
       <Modal isOpen={editorVisibility} onDismiss={() => setEditorVisibility(false)} title={`Edit ${value.name}`}>
         <Label>Theme Theme</Label>
-        <Input css={{}} value={value.name} onChange={e => onTitleChange(e.currentTarget.value)}></Input>
+        <Input css={{}} value={value.name} onChange={(e) => onTitleChange(e.currentTarget.value)}></Input>
         <br />
         {value.styles.map((style, index: number) => {
           switch (style.type) {
             case BoomThemeStyleProps.BaseTheme:
-              const baseTheme: SelectableValue = defaultThemes.find(t => t.value === style.props.theme) || {
+              const baseTheme: SelectableValue = defaultThemes.find((t) => t.value === style.props.theme) || {
                 label: 'Default',
                 value: 'default',
               };
@@ -61,7 +61,7 @@ export const ThemeEditor: React.FC<EditorProps> = ({ value, onChange }) => {
                   <RadioButtonGroup
                     value={baseTheme.value}
                     options={defaultThemes}
-                    onChange={e => {
+                    onChange={(e) => {
                       onStylePropertyChange(index, 'theme', e);
                     }}
                   ></RadioButtonGroup>
@@ -75,7 +75,7 @@ export const ThemeEditor: React.FC<EditorProps> = ({ value, onChange }) => {
                   <Input
                     css={{}}
                     value={style.props.url}
-                    onChange={e => {
+                    onChange={(e) => {
                       onStylePropertyChange(index, 'url', e.currentTarget.value);
                     }}
                   ></Input>
@@ -89,7 +89,7 @@ export const ThemeEditor: React.FC<EditorProps> = ({ value, onChange }) => {
                   <Input
                     css={{}}
                     value={style.props.url}
-                    onChange={e => {
+                    onChange={(e) => {
                       onStylePropertyChange(index, 'url', e.currentTarget.value);
                     }}
                   ></Input>
@@ -104,7 +104,7 @@ export const ThemeEditor: React.FC<EditorProps> = ({ value, onChange }) => {
                     css={{}}
                     value={style.props.text}
                     rows={6}
-                    onChange={e => {
+                    onChange={(e) => {
                       onStylePropertyChange(index, 'text', e.currentTarget.value);
                     }}
                   ></TextArea>
@@ -118,14 +118,14 @@ export const ThemeEditor: React.FC<EditorProps> = ({ value, onChange }) => {
                   <Input
                     css={{}}
                     value={style.props.color}
-                    onChange={e => {
+                    onChange={(e) => {
                       onStylePropertyChange(index, 'color', e.currentTarget.value);
                     }}
                     prefix={
                       <div>
                         <ColorPicker
                           color={style.props.color}
-                          onChange={e => {
+                          onChange={(e) => {
                             onStylePropertyChange(index, 'color', e);
                           }}
                         />
@@ -142,7 +142,7 @@ export const ThemeEditor: React.FC<EditorProps> = ({ value, onChange }) => {
                   <Input
                     css={{}}
                     value={style.props.url}
-                    onChange={e => {
+                    onChange={(e) => {
                       onStylePropertyChange(index, 'url', e.currentTarget.value);
                     }}
                   ></Input>
@@ -156,7 +156,7 @@ export const ThemeEditor: React.FC<EditorProps> = ({ value, onChange }) => {
         })}
         <div className="text-center">
           <br />
-          {value.styles.filter(s => s.type === BoomThemeStyleProps.ExternalURL).length < 1 && (
+          {value.styles.filter((s) => s.type === BoomThemeStyleProps.ExternalURL).length < 1 && (
             <>
               <button className="btn btn-success" onClick={() => addStyle(BoomThemeStyleProps.ExternalURL)}>
                 Add external CSS
@@ -164,7 +164,7 @@ export const ThemeEditor: React.FC<EditorProps> = ({ value, onChange }) => {
               &nbsp;&nbsp;
             </>
           )}
-          {value.styles.filter(s => s.type === BoomThemeStyleProps.CustomStyle).length < 1 && (
+          {value.styles.filter((s) => s.type === BoomThemeStyleProps.CustomStyle).length < 1 && (
             <>
               <button className="btn btn-success" onClick={() => addStyle(BoomThemeStyleProps.CustomStyle)}>
                 Add custom CSS
@@ -172,7 +172,7 @@ export const ThemeEditor: React.FC<EditorProps> = ({ value, onChange }) => {
               &nbsp;&nbsp;
             </>
           )}
-          {value.styles.filter(s => s.type === BoomThemeStyleProps.BackgroundImage).length < 1 && (
+          {value.styles.filter((s) => s.type === BoomThemeStyleProps.BackgroundImage).length < 1 && (
             <>
               <button className="btn btn-success" onClick={() => addStyle(BoomThemeStyleProps.BackgroundImage)}>
                 Add BG Image
@@ -180,7 +180,7 @@ export const ThemeEditor: React.FC<EditorProps> = ({ value, onChange }) => {
               &nbsp;&nbsp;
             </>
           )}
-          {value.styles.filter(s => s.type === BoomThemeStyleProps.PanelBackground).length < 1 && (
+          {value.styles.filter((s) => s.type === BoomThemeStyleProps.PanelBackground).length < 1 && (
             <>
               <button className="btn btn-success" onClick={() => addStyle(BoomThemeStyleProps.PanelBackground)}>
                 Add Panel BG Color

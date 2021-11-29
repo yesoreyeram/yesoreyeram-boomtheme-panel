@@ -1,5 +1,5 @@
-.tscache/
+node_modules
+dist
+coverage
+.tscache
 *.tmp.txt
-node_modules/
-dist/
-coverage/
