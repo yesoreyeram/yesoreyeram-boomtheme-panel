@@ -6,14 +6,14 @@ labels: help wanted
 assignees: ''
 ---
 
-**What you are struggling with**
+## What you are struggling with
 
 Describe what assistance you need
 
-**What you tried**
+## What you tried
 
 Describe what you tried
 
-**Related Issues and Links**
+## Related Issues and Links
 
 Related links

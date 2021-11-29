@@ -19,7 +19,7 @@ interface Props extends PanelProps<PanelOptions> {
   onOptionsChange: (options: PanelOptions) => void;
 }
 
-export const Panel = ({ options }: Props) => {
+export const Panel = ({ options, replaceVariables }: Props) => {
   const [runTimeThemeState, setRunTimeThemeState] = useState(false);
   const [runTimeTheme, setRunTimeTheme] = useState('');
 
@@ -30,7 +30,7 @@ export const Panel = ({ options }: Props) => {
 
   let output = '';
 
-  options.themes.forEach((themeOptions: BoomTheme, index) => {
+  options.themes?.forEach((themeOptions: BoomTheme, index) => {
     const theme = new BoomTheme(themeOptions);
     if (runTimeThemeState) {
       if (runTimeTheme === theme.name) {
@@ -43,13 +43,13 @@ export const Panel = ({ options }: Props) => {
             `;
       }
     } else {
-      if (options.activeTheme === 'Grafana Dark') {
+      if (replaceVariables(options.activeTheme) === 'Grafana Dark') {
         output = `@import url('${getThemeCSSFile('dark')}');
             `;
-      } else if (options.activeTheme === 'Grafana Light') {
+      } else if (replaceVariables(options.activeTheme) === 'Grafana Light') {
         output = `@import url('${getThemeCSSFile('light')}');
             `;
-      } else if (options.activeTheme === theme.name) {
+      } else if (replaceVariables(options.activeTheme) === theme.name) {
         output += theme.getThemeContent();
       }
     }

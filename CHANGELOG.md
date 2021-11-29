@@ -2,6 +2,8 @@
 
 | Version | Changes                                            |
 | ------- | -------------------------------------------------- |
+| 0.2.1   | Bug fixes (Thanks @koszti)                         |
+|         | Replace theme by variable (Thanks @koszti)         |
 | 0.2.0   | **Plugin Signed**                                  |
 |         | Tagged releases                                    |
 |         | Bug fixes                                          |

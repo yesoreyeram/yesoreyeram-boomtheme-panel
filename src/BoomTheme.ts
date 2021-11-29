@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import { BoomThemeStyle, BoomThemeStyleProps } from './BoomThemeStyle';
 import { getThemeCSSFile } from './utils';
 import { CONFIG } from './config';
@@ -29,9 +28,9 @@ export class BoomTheme {
   deleteStyle(index: number): void {
     this.styles.splice(index, 1);
   }
-  private constructTheme(styles: any[]): string {
+  private constructTheme(styles: any[] = []): string {
     let output = ``;
-    _.each(styles, (style) => {
+    styles.forEach((style) => {
       if (style.type === CONFIG.THEME_STYLES.URL) {
         if (style.props && style.props.url !== '') {
           output += `@import url('${style.props.url}');
@@ -55,7 +54,7 @@ export class BoomTheme {
       } else if (style.type === CONFIG.THEME_STYLES.BG_IMAGE) {
         if (style.props && style.props.url !== '') {
           output += `
-.main-view, .sidemenu, .sidemenu-open .sidemenu, .navbar, .dashboard-container,.dashboard-container > div {
+.main-view, .sidemenu, .sidemenu-open .sidemenu, .navbar, .dashboard-container,.dashboard-container > div, .page-toolbar  {
     background: url("${style.props.url}") no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -67,7 +66,7 @@ export class BoomTheme {
       } else if (style.type === CONFIG.THEME_STYLES.PANEL_CONTAINER_BG_COLOR) {
         if (style.props && style.props.color !== '') {
           output += `
-.panel-container {
+.panel-container, .page-toolbar {
     background-color: ${style.props.color}
 }
 `;

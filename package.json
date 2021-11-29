@@ -1,15 +1,10 @@
 {
   "name": "yesoreyeram-boomtheme-panel",
-  "version": "0.2.0-alpha.6",
+  "version": "0.2.1",
   "description": "Themes for Grafana",
   "main": "dist/module.js",
-  "scripts": {
-    "build": "grafana-toolkit plugin:build",
-    "test": "grafana-toolkit plugin:test",
-    "sign": "grafana-toolkit plugin:sign",
-    "dev": "grafana-toolkit plugin:dev",
-    "watch": "grafana-toolkit plugin:dev --watch"
-  },
+  "author": "Sriramajeyam Sugumaran",
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yesoreyeram/yesoreyeram-boomtheme-panel.git"
@@ -20,14 +15,16 @@
     "panel",
     "theme"
   ],
-  "author": "Sriramajeyam Sugumaran",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/yesoreyeram/yesoreyeram-boomtheme-panel/issues"
   },
   "homepage": "https://github.com/yesoreyeram/yesoreyeram-boomtheme-panel#readme",
-  "devDependencies": {
-    "@grafana/toolkit": "7.5.1"
+  "scripts": {
+    "build": "grafana-toolkit plugin:build",
+    "test": "grafana-toolkit plugin:test",
+    "sign": "grafana-toolkit plugin:sign",
+    "dev": "grafana-toolkit plugin:dev",
+    "watch": "grafana-toolkit plugin:dev --watch"
   },
   "dependencies": {
     "@grafana/data": "7.5.1",
@@ -35,5 +32,8 @@
     "@grafana/ui": "7.5.1",
     "lodash": "^4.17.21",
     "react-style-tag": "^2.0.4"
+  },
+  "devDependencies": {
+    "@grafana/toolkit": "7.5.1"
   }
 }

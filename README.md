@@ -75,7 +75,7 @@ grafana-cli plugins install yesoreyeram-boomtheme-panel
 or for specific versions
 
 ```sh
-grafana-cli --pluginUrl https://github.com/yesoreyeram/yesoreyeram-boomtheme-panel/releases/download/v0.2.0-alpha.5/yesoreyeram-boomtheme-panel-0.2.0-alpha.5.zip plugins install yesoreyeram-boomtheme-panel
+grafana-cli --pluginUrl https://github.com/yesoreyeram/yesoreyeram-boomtheme-panel/releases/download/v0.2.1/yesoreyeram-boomtheme-panel-0.2.1.zip plugins install yesoreyeram-boomtheme-panel
 ```
 
 ### Using helm chart
@@ -91,5 +91,5 @@ or for any specific versions
 
 ```yml
 plugins:
-  - https://github.com/yesoreyeram/yesoreyeram-boomtheme-panel/releases/download/v0.2.0-alpha.5/yesoreyeram-boomtheme-panel-0.2.0-alpha.5.zip;yesoreyeram-boomtheme-panel
+  - https://github.com/yesoreyeram/yesoreyeram-boomtheme-panel/releases/download/v0.2.1/yesoreyeram-boomtheme-panel-0.2.1.zip;yesoreyeram-boomtheme-panel
 ```

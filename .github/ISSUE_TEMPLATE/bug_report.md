@@ -6,17 +6,21 @@ labels: bug
 assignees: ''
 ---
 
-**Describe the bug**
+## Describe the bug
+
 A clear and concise description of what the bug is.
 
-**Version Details:**
- - Grafana version : 
- - Plugin version :
- - Did this work in any other version of Grafana :
- - What datasource you use : 
+## Version Details
 
-**Panel JSON**
+* Grafana version :
+* Plugin version :
+* Did this work in any other version of Grafana :
+* What datasource you use :
+
+## Panel JSON
+
 If applicable, provide panel json. Make sure to mask any sensitive information
 
-**Screenshots**
+## Screenshots
+
 If applicable, add screenshots to help explain your problem.
