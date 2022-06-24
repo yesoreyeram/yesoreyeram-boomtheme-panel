@@ -30,9 +30,9 @@
     "@grafana/toolkit": "7.5.1"
   },
   "dependencies": {
-    "@grafana/data": "7.5.1",
-    "@grafana/runtime": "7.5.1",
-    "@grafana/ui": "7.5.1",
+    "@grafana/data": "8.4.7",
+    "@grafana/runtime": "8.4.7",
+    "@grafana/ui": "8.4.7",
     "lodash": "^4.17.21",
     "react-style-tag": "^2.0.4"
   }
