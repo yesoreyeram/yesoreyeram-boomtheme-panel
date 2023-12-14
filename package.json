@@ -1,6 +1,6 @@
 {
   "name": "yesoreyeram-boomtheme-panel",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Themes for Grafana",
   "main": "dist/module.js",
   "author": "Sriramajeyam Sugumaran",

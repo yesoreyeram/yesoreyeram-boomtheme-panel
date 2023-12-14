@@ -1,3 +1,9 @@
+# :warning: DEPRECATION
+
+Grafana Boom Theme Panel was created during early Grafana days to workaround theme support for Grafana dashbaords. Given that Grafana have native themes now, It is time to deprecate the plugin.
+
+Thank you community for the support. This plugin will be removed/archived from the grafana plugin catalog. Existing installations should continue to work. If that doesn't work, reach out to [community.grafana.com](https://community.grafana.com) for support. You can also download old binaries from [releases page](https://github.com/yesoreyeram/yesoreyeram-boomtheme-panel/releases).
+
 # Boom Theme Panel
 
 [![Build & Publish](https://github.com/yesoreyeram/yesoreyeram-boomtheme-panel/workflows/Build%20&%20Publish/badge.svg)](https://github.com/yesoreyeram/yesoreyeram-boomtheme-panel/actions?query=workflow%3A%22Build+%26+Publish%22)
