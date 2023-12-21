@@ -66,7 +66,7 @@ export class BoomTheme {
       } else if (style.type === CONFIG.THEME_STYLES.PANEL_CONTAINER_BG_COLOR) {
         if (style.props && style.props.color !== '') {
           output += `
-.panel-container, .page-toolbar {
+.panel-container, .page-toolbar,[class$="panel-container"],[class$="page-toolbar"] {
     background-color: ${style.props.color}
 }
 `;
